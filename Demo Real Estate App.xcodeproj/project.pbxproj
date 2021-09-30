@@ -9,21 +9,51 @@
 /* Begin PBXBuildFile section */
 		9F680E0F2703E81900182822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F680E0E2703E81900182822 /* AppDelegate.swift */; };
 		9F680E112703E81900182822 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F680E102703E81900182822 /* SceneDelegate.swift */; };
-		9F680E132703E81900182822 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F680E122703E81900182822 /* ViewController.swift */; };
-		9F680E162703E81900182822 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E142703E81900182822 /* Main.storyboard */; };
 		9F680E182703E81E00182822 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E172703E81E00182822 /* Assets.xcassets */; };
 		9F680E1B2703E81E00182822 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E192703E81E00182822 /* LaunchScreen.storyboard */; };
+		9F680E262705106D00182822 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E252705106D00182822 /* Colors.xcassets */; };
+		9F680E3727051DFE00182822 /* GothamSSm-XLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E2B27051DFE00182822 /* GothamSSm-XLightItalic.otf */; };
+		9F680E3827051DFE00182822 /* GothamSSm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E2C27051DFE00182822 /* GothamSSm-Medium.otf */; };
+		9F680E3927051DFE00182822 /* GothamSSm-XLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E2D27051DFE00182822 /* GothamSSm-XLight.otf */; };
+		9F680E3A27051DFE00182822 /* GothamSSm-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E2E27051DFE00182822 /* GothamSSm-Black.otf */; };
+		9F680E3B27051DFE00182822 /* GothamSSm-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E2F27051DFE00182822 /* GothamSSm-Light.otf */; };
+		9F680E3C27051DFE00182822 /* GothamSSm-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E3027051DFE00182822 /* GothamSSm-Book.otf */; };
+		9F680E3D27051DFE00182822 /* GothamSSm-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E3127051DFE00182822 /* GothamSSm-Bold.otf */; };
+		9F680E3E27051DFE00182822 /* GothamSSm-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E3227051DFE00182822 /* GothamSSm-MediumItalic.otf */; };
+		9F680E3F27051DFE00182822 /* GothamSSm-BookItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E3327051DFE00182822 /* GothamSSm-BookItalic.otf */; };
+		9F680E4027051DFE00182822 /* GothamSSm-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E3427051DFE00182822 /* GothamSSm-LightItalic.otf */; };
+		9F680E4127051DFE00182822 /* GothamSSm-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E3527051DFE00182822 /* GothamSSm-BoldItalic.otf */; };
+		9F680E4227051DFE00182822 /* GothamSSm-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E3627051DFE00182822 /* GothamSSm-BlackItalic.otf */; };
+		9F680E4427052D1500182822 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F680E4327052D1500182822 /* BaseView.swift */; };
+		9F680E4627052E0800182822 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F680E4527052E0800182822 /* BaseViewController.swift */; };
+		9F680E4827052E2300182822 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F680E4727052E2300182822 /* ViewModel.swift */; };
+		9F680E4A2705948400182822 /* ViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F680E492705948400182822 /* ViewControllerProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9F680E0B2703E81900182822 /* Demo Real Estate App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo Real Estate App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F680E0E2703E81900182822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F680E102703E81900182822 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9F680E122703E81900182822 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9F680E152703E81900182822 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F680E172703E81E00182822 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F680E1A2703E81E00182822 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F680E1C2703E81E00182822 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F680E252705106D00182822 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		9F680E2B27051DFE00182822 /* GothamSSm-XLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamSSm-XLightItalic.otf"; sourceTree = "<group>"; };
+		9F680E2C27051DFE00182822 /* GothamSSm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamSSm-Medium.otf"; sourceTree = "<group>"; };
+		9F680E2D27051DFE00182822 /* GothamSSm-XLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamSSm-XLight.otf"; sourceTree = "<group>"; };
+		9F680E2E27051DFE00182822 /* GothamSSm-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamSSm-Black.otf"; sourceTree = "<group>"; };
+		9F680E2F27051DFE00182822 /* GothamSSm-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamSSm-Light.otf"; sourceTree = "<group>"; };
+		9F680E3027051DFE00182822 /* GothamSSm-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamSSm-Book.otf"; sourceTree = "<group>"; };
+		9F680E3127051DFE00182822 /* GothamSSm-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamSSm-Bold.otf"; sourceTree = "<group>"; };
+		9F680E3227051DFE00182822 /* GothamSSm-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamSSm-MediumItalic.otf"; sourceTree = "<group>"; };
+		9F680E3327051DFE00182822 /* GothamSSm-BookItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamSSm-BookItalic.otf"; sourceTree = "<group>"; };
+		9F680E3427051DFE00182822 /* GothamSSm-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamSSm-LightItalic.otf"; sourceTree = "<group>"; };
+		9F680E3527051DFE00182822 /* GothamSSm-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamSSm-BoldItalic.otf"; sourceTree = "<group>"; };
+		9F680E3627051DFE00182822 /* GothamSSm-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamSSm-BlackItalic.otf"; sourceTree = "<group>"; };
+		9F680E4327052D1500182822 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		9F680E4527052E0800182822 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		9F680E4727052E2300182822 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		9F680E492705948400182822 /* ViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +86,70 @@
 		9F680E0D2703E81900182822 /* Demo Real Estate App */ = {
 			isa = PBXGroup;
 			children = (
+				9F680E22270434DF00182822 /* Infrastructure */,
+				9F680E23270434EC00182822 /* Architecture */,
+			);
+			path = "Demo Real Estate App";
+			sourceTree = "<group>";
+		};
+		9F680E22270434DF00182822 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				9F680E242705063600182822 /* Resources */,
 				9F680E0E2703E81900182822 /* AppDelegate.swift */,
 				9F680E102703E81900182822 /* SceneDelegate.swift */,
-				9F680E122703E81900182822 /* ViewController.swift */,
-				9F680E142703E81900182822 /* Main.storyboard */,
-				9F680E172703E81E00182822 /* Assets.xcassets */,
 				9F680E192703E81E00182822 /* LaunchScreen.storyboard */,
 				9F680E1C2703E81E00182822 /* Info.plist */,
 			);
-			path = "Demo Real Estate App";
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		9F680E23270434EC00182822 /* Architecture */ = {
+			isa = PBXGroup;
+			children = (
+				9F680E4327052D1500182822 /* BaseView.swift */,
+				9F680E4527052E0800182822 /* BaseViewController.swift */,
+				9F680E4727052E2300182822 /* ViewModel.swift */,
+				9F680E492705948400182822 /* ViewControllerProtocol.swift */,
+			);
+			path = Architecture;
+			sourceTree = "<group>";
+		};
+		9F680E242705063600182822 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9F680E2927051DFE00182822 /* Fonts */,
+				9F680E172703E81E00182822 /* Assets.xcassets */,
+				9F680E252705106D00182822 /* Colors.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9F680E2927051DFE00182822 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9F680E2A27051DFE00182822 /* Gotham SSm */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9F680E2A27051DFE00182822 /* Gotham SSm */ = {
+			isa = PBXGroup;
+			children = (
+				9F680E2B27051DFE00182822 /* GothamSSm-XLightItalic.otf */,
+				9F680E2C27051DFE00182822 /* GothamSSm-Medium.otf */,
+				9F680E2D27051DFE00182822 /* GothamSSm-XLight.otf */,
+				9F680E2E27051DFE00182822 /* GothamSSm-Black.otf */,
+				9F680E2F27051DFE00182822 /* GothamSSm-Light.otf */,
+				9F680E3027051DFE00182822 /* GothamSSm-Book.otf */,
+				9F680E3127051DFE00182822 /* GothamSSm-Bold.otf */,
+				9F680E3227051DFE00182822 /* GothamSSm-MediumItalic.otf */,
+				9F680E3327051DFE00182822 /* GothamSSm-BookItalic.otf */,
+				9F680E3427051DFE00182822 /* GothamSSm-LightItalic.otf */,
+				9F680E3527051DFE00182822 /* GothamSSm-BoldItalic.otf */,
+				9F680E3627051DFE00182822 /* GothamSSm-BlackItalic.otf */,
+			);
+			path = "Gotham SSm";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,9 +210,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F680E4027051DFE00182822 /* GothamSSm-LightItalic.otf in Resources */,
+				9F680E3E27051DFE00182822 /* GothamSSm-MediumItalic.otf in Resources */,
 				9F680E1B2703E81E00182822 /* LaunchScreen.storyboard in Resources */,
+				9F680E4227051DFE00182822 /* GothamSSm-BlackItalic.otf in Resources */,
+				9F680E262705106D00182822 /* Colors.xcassets in Resources */,
+				9F680E3C27051DFE00182822 /* GothamSSm-Book.otf in Resources */,
+				9F680E3827051DFE00182822 /* GothamSSm-Medium.otf in Resources */,
+				9F680E4127051DFE00182822 /* GothamSSm-BoldItalic.otf in Resources */,
+				9F680E3927051DFE00182822 /* GothamSSm-XLight.otf in Resources */,
+				9F680E3727051DFE00182822 /* GothamSSm-XLightItalic.otf in Resources */,
+				9F680E3D27051DFE00182822 /* GothamSSm-Bold.otf in Resources */,
+				9F680E3B27051DFE00182822 /* GothamSSm-Light.otf in Resources */,
 				9F680E182703E81E00182822 /* Assets.xcassets in Resources */,
-				9F680E162703E81900182822 /* Main.storyboard in Resources */,
+				9F680E3A27051DFE00182822 /* GothamSSm-Black.otf in Resources */,
+				9F680E3F27051DFE00182822 /* GothamSSm-BookItalic.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +235,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F680E132703E81900182822 /* ViewController.swift in Sources */,
+				9F680E4A2705948400182822 /* ViewControllerProtocol.swift in Sources */,
+				9F680E4827052E2300182822 /* ViewModel.swift in Sources */,
+				9F680E4427052D1500182822 /* BaseView.swift in Sources */,
+				9F680E4627052E0800182822 /* BaseViewController.swift in Sources */,
 				9F680E0F2703E81900182822 /* AppDelegate.swift in Sources */,
 				9F680E112703E81900182822 /* SceneDelegate.swift in Sources */,
 			);
@@ -147,14 +247,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		9F680E142703E81900182822 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9F680E152703E81900182822 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9F680E192703E81E00182822 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -291,11 +383,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 986PSV4D2J;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Demo Real Estate App/Info.plist";
+				INFOPLIST_FILE = "Demo Real Estate App/Infrastructure/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -306,7 +398,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -319,11 +411,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 986PSV4D2J;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Demo Real Estate App/Info.plist";
+				INFOPLIST_FILE = "Demo Real Estate App/Infrastructure/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -334,7 +426,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
