@@ -10,7 +10,6 @@
 		9F680E0F2703E81900182822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F680E0E2703E81900182822 /* AppDelegate.swift */; };
 		9F680E112703E81900182822 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F680E102703E81900182822 /* SceneDelegate.swift */; };
 		9F680E182703E81E00182822 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E172703E81E00182822 /* Assets.xcassets */; };
-		9F680E1B2703E81E00182822 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E192703E81E00182822 /* LaunchScreen.storyboard */; };
 		9F680E262705106D00182822 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E252705106D00182822 /* Colors.xcassets */; };
 		9F680E3727051DFE00182822 /* GothamSSm-XLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E2B27051DFE00182822 /* GothamSSm-XLightItalic.otf */; };
 		9F680E3827051DFE00182822 /* GothamSSm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F680E2C27051DFE00182822 /* GothamSSm-Medium.otf */; };
@@ -35,7 +34,6 @@
 		9F680E0E2703E81900182822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F680E102703E81900182822 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9F680E172703E81E00182822 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9F680E1A2703E81E00182822 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F680E1C2703E81E00182822 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F680E252705106D00182822 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		9F680E2B27051DFE00182822 /* GothamSSm-XLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamSSm-XLightItalic.otf"; sourceTree = "<group>"; };
@@ -98,7 +96,6 @@
 				9F680E242705063600182822 /* Resources */,
 				9F680E0E2703E81900182822 /* AppDelegate.swift */,
 				9F680E102703E81900182822 /* SceneDelegate.swift */,
-				9F680E192703E81E00182822 /* LaunchScreen.storyboard */,
 				9F680E1C2703E81E00182822 /* Info.plist */,
 			);
 			path = Infrastructure;
@@ -212,7 +209,6 @@
 			files = (
 				9F680E4027051DFE00182822 /* GothamSSm-LightItalic.otf in Resources */,
 				9F680E3E27051DFE00182822 /* GothamSSm-MediumItalic.otf in Resources */,
-				9F680E1B2703E81E00182822 /* LaunchScreen.storyboard in Resources */,
 				9F680E4227051DFE00182822 /* GothamSSm-BlackItalic.otf in Resources */,
 				9F680E262705106D00182822 /* Colors.xcassets in Resources */,
 				9F680E3C27051DFE00182822 /* GothamSSm-Book.otf in Resources */,
@@ -245,17 +241,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		9F680E192703E81E00182822 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9F680E1A2703E81E00182822 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9F680E1D2703E81E00182822 /* Debug */ = {
@@ -385,7 +370,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Demo Real Estate App/Infrastructure/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -413,7 +397,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Demo Real Estate App/Infrastructure/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
