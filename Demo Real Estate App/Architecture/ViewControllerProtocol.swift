@@ -11,5 +11,5 @@ protocol ViewControllerProtocol: UIViewController {
   associatedtype ViewType: BaseView
   associatedtype ViewModelType: ViewModel
   
-  init (view: ViewType, ViewModel: ViewModelType)
+  init (view: ViewType, viewModel: ViewModelType)
 }
