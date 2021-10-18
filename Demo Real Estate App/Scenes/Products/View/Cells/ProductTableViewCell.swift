@@ -21,15 +21,14 @@ final class ProductTableViewCell: UITableViewCell {
   private var distanceImageView: UIImageView!
   private var distanceLabel: UILabel!
   
-  enum ViewTrait {
-    static let screenWidth: CGFloat = UIScreen.main.bounds.width
+  private enum ViewTrait {
     static let containerPadding: CGFloat = 24
     static let defaultPadding: CGFloat = 20
     static let mediumPadding: CGFloat = 18
     static let smallPadding: CGFloat = 6
-    static let contentPadding: CGFloat = 8
+    static let contentPadding: CGFloat = 8.5
     static let productImageViewWidthMultiplier: CGFloat = 0.22
-    static let smallLogosWidthMultiplier: CGFloat = 0.035
+    static let featureLogosWidthMultiplier: CGFloat = 0.035
     static let symbolDimension: CGFloat = 15
   }
   
@@ -44,7 +43,6 @@ final class ProductTableViewCell: UITableViewCell {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
 }
 
 // MARK: - Public
@@ -95,7 +93,7 @@ private extension ProductTableViewCell {
   
   func setupProductImageView() {
     productImageView = UIImageView()
-    productImageView.tintColor = UIColor.systemGray3
+    productImageView.tintColor = ColorHelper.lightGray
     productImageView.contentMode = .scaleAspectFill
     productImageView.image = AssetHelper.productPlaceHolderImage
     productImageView.clipsToBounds = true
@@ -110,7 +108,7 @@ private extension ProductTableViewCell {
   
   func setupAddressLabel () {
     addressLabel = UILabel()
-    addressLabel.font = UIFont(name: FontHelper.book, size: 10)
+    addressLabel.font = UIFont(name: FontHelper.book, size: 12)
     addressLabel.textColor = ColorHelper.medium
   }
   
@@ -215,7 +213,7 @@ private extension ProductTableViewCell {
       
       bedroomImageView.bottomAnchor.constraint(equalTo: productImageView.bottomAnchor),
       bedroomImageView.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: ViewTrait.mediumPadding),
-      bedroomImageView.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: ViewTrait.smallLogosWidthMultiplier),
+      bedroomImageView.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: ViewTrait.featureLogosWidthMultiplier),
       bedroomImageView.heightAnchor.constraint(equalTo: bedroomImageView.widthAnchor),
       
       bedroomLabel.bottomAnchor.constraint(equalTo: productImageView.bottomAnchor),

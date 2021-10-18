@@ -14,13 +14,19 @@ protocol ProductsViewDelegate: UIViewController {
 }
 
 final class ProductsView: BaseView {
+  private var navigationLabel: UILabel!
   private var searchBar: UISearchBar!
   private var tableView: UITableView!
   private var dataSource: [ProductTableViewCellModel] = []
+  private var searchFlag = false
   weak var delegate: ProductsViewDelegate?
   
   private enum ViewTraits {
     static let searchBarHeight: CGFloat = 44
+    static let headerHeight: CGFloat = 44
+    static let defaultPadding: CGFloat = 16
+    static let contentPadding: CGFloat = 10
+    static let navigationPadding: CGFloat = 24
   }
   
   override init(frame: CGRect) {
@@ -36,6 +42,7 @@ extension ProductsView {
   
   func provideDataSource(_ dataSource: [ProductTableViewCellModel]) {
     self.dataSource = dataSource
+    searchFlag = true
     tableView.reloadData()
   }
 }
@@ -44,7 +51,14 @@ extension ProductsView {
 extension ProductsView: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    dataSource.count
+    let rowCount = dataSource.count
+    
+    if rowCount == 0 && searchFlag {
+      tableView.backgroundView?.isHidden = false
+    } else {
+      tableView.backgroundView?.isHidden = true
+    }
+    return rowCount
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,21 +92,45 @@ extension ProductsView: UISearchBarDelegate {
     searchBar.resignFirstResponder()
     delegate?.searchBarCancelButtonClicked()
   }
+  
+  func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+    searchBar.resignFirstResponder()
+    if searchBar.text == "" {
+      delegate?.searchBarSearchButtonClicked(searchBar.text)
+      print ("******A")
+    }
+    else {
+      delegate?.searchBarCancelButtonClicked()
+      print ("******B")
+    }
+  }
+  
 }
 
 // MARK: - Private
 private extension ProductsView {
   
   func setupUIComponents() {
-    backgroundColor = ColorHelper.white
+    backgroundColor = ColorHelper.lightGray
+    setupNavigationBarHeader()
     setupSearchBar()
     setupTableView()
+  }
+  
+  func setupNavigationBarHeader() {
+    navigationLabel = UILabel()
+    navigationLabel.text = "DTT REAL ESTATE"
+    navigationLabel.textColor = ColorHelper.strong
+    navigationLabel.font = UIFont(name: FontHelper.bold, size: 18)
   }
   
   func setupSearchBar() {
     searchBar = UISearchBar()
     searchBar.backgroundColor = .clear
-    searchBar.showsCancelButton = true
+    searchBar.searchBarStyle = .minimal
+    searchBar.searchTextField.font = UIFont(name: FontHelper.light, size: 12)
+    searchBar.searchTextField.textColor = ColorHelper.strong
+    searchBar.placeholder = "Search for a home"
     searchBar.delegate = self
   }
   
@@ -103,6 +141,9 @@ private extension ProductsView {
     tableView.delegate = self
     tableView.rowHeight = UITableView.automaticDimension
     tableView.separatorStyle = .none
+    tableView.backgroundColor = ColorHelper.lightGray
+    tableView.backgroundView = EmptyResultView()
+    tableView.backgroundView?.isHidden = true
   }
 }
 
@@ -110,18 +151,24 @@ private extension ProductsView {
 private extension ProductsView {
   
   func addSubviews() {
+    addSubviewVC(navigationLabel)
     addSubviewVC(searchBar)
     addSubviewVC(tableView)
   }
   
   func setupConstraints() {
     NSLayoutConstraint.activate([
-      searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-      searchBar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-      searchBar.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+      navigationLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: ViewTraits.contentPadding),
+      navigationLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: ViewTraits.navigationPadding),
+      navigationLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -ViewTraits.navigationPadding),
+      navigationLabel.heightAnchor.constraint(equalToConstant: ViewTraits.headerHeight),
+      
+      searchBar.topAnchor.constraint(equalTo: navigationLabel.bottomAnchor, constant: ViewTraits.contentPadding),
+      searchBar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: ViewTraits.defaultPadding),
+      searchBar.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -ViewTraits.defaultPadding),
       searchBar.heightAnchor.constraint(equalToConstant: ViewTraits.searchBarHeight),
       
-      tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+      tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: ViewTraits.contentPadding),
       tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
       tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
       tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)

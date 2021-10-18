@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Amsterdam Latitude</key>
+	<string>52.367301</string>
+	<key>Amsterdam Longitude</key>
+	<string>4.899820</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>GothamSSm-Light.otf</string>

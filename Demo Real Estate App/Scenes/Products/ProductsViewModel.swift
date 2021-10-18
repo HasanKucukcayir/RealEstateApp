@@ -5,7 +5,7 @@
 //  Created by MacBookAir on 05/10/2021.
 //
 
-import UIKit
+import CoreLocation
 
 protocol ProductsViewModelProtocol: ViewModel {
   /// Fetches All Products
@@ -42,7 +42,8 @@ extension ProductsViewModel: ProductsViewModelProtocol {
       case .failure:
         self.delegate?.didFailForGettingProducts()
         
-      case .success(let productList):
+      case .success(var productList):
+        productList.sort {$0.price < $1.price}
         self.productList = productList
         let dataSource = self.generateProductTableViewCellModel(from: productList)
         self.delegate?.didGetProducts(dataSource: dataSource)
@@ -55,8 +56,7 @@ extension ProductsViewModel: ProductsViewModelProtocol {
       filteredList = nil
       return generateProductTableViewCellModel(from: productList)
     }
-//    filteredList = productList.filter { $0.id.lowercased().range(of: id.lowercased()) != nil }
-    filteredList = productList
+    filteredList = productList.filter { $0.zip.lowercased().range(of: id.lowercased()) != nil || $0.city.lowercased().range(of: id.lowercased()) != nil}
     return generateProductTableViewCellModel(from: filteredList!)
   }
   
@@ -83,7 +83,7 @@ extension ProductsViewModel {
       let numberOfBedroom = "\($0.bedrooms)"
       let numberOfBathroom = "\($0.bathrooms)"
       let size = "\($0.size)"
-      let distance = "text"
+      let distance = calculateDistance(_latitude: $0.latitude, _longitude: $0.longitude)
 
       return ProductTableViewCellModel(imageUrl: imageUrl, price: price, address: address, numberOfBedroom: numberOfBedroom, numberOfBathroom: numberOfBathroom, size: size, distance: distance)
     }
@@ -93,4 +93,5 @@ extension ProductsViewModel {
     filteredList = nil
     productList = []
   }
+  
 }

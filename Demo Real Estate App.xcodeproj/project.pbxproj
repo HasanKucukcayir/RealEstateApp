@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F3AC5C92712FB7000AB0B33 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AC5C82712FB7000AB0B33 /* InfoView.swift */; };
+		9F3AC5CB271314E000AB0B33 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AC5CA271314E000AB0B33 /* InfoViewController.swift */; };
+		9F3AC5D127136A1B00AB0B33 /* ProductDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AC5D027136A1B00AB0B33 /* ProductDetailViewModel.swift */; };
+		9F3AC5D327136A3600AB0B33 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AC5D227136A3600AB0B33 /* ProductDetailViewController.swift */; };
+		9F3AC5D527136A6200AB0B33 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AC5D427136A6200AB0B33 /* ProductDetailView.swift */; };
 		9F484DCC2710B09500772B5D /* GothamSSm-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F484DCB2710B09500772B5D /* GothamSSm-Book.otf */; };
 		9F484DD82710B24900772B5D /* GothamSSm-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F484DCD2710B24700772B5D /* GothamSSm-Light.otf */; };
 		9F484DD92710B24900772B5D /* GothamSSm-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F484DCE2710B24700772B5D /* GothamSSm-BlackItalic.otf */; };
@@ -32,6 +37,10 @@
 		9F77D99C270CE34900196E95 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F77D99B270CE34900196E95 /* ProductsViewController.swift */; };
 		9F77D99F270CEC3800196E95 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F77D99E270CEC3800196E95 /* Identifiable.swift */; };
 		9F77D9A1270CFCB500196E95 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F77D9A0270CFCB500196E95 /* Constants.swift */; };
+		9F8E1967271AE38C00E02F9E /* EmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8E1966271AE38C00E02F9E /* EmptyResultView.swift */; };
+		9F8E196B271CDDC200E02F9E /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8E196A271CDDC200E02F9E /* AppUtilities.swift */; };
+		9F8E196D271D06AE00E02F9E /* UserDefaultsKeyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8E196C271D06AE00E02F9E /* UserDefaultsKeyHelper.swift */; };
+		9FBD360D271D7C4700F952F5 /* HomeAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBD360C271D7C4700F952F5 /* HomeAnnotationView.swift */; };
 		9FCD23BC2708D8C50018B99C /* NetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD23BB2708D8C50018B99C /* NetworkTarget.swift */; };
 		9FCD23BE2708FD270018B99C /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD23BD2708FD270018B99C /* NetworkError.swift */; };
 		9FCD23C0270A42750018B99C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD23BF270A42750018B99C /* NetworkService.swift */; };
@@ -45,9 +54,16 @@
 		9FCD23D6270A72960018B99C /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD23D5270A72960018B99C /* ColorHelper.swift */; };
 		9FCD23DA270A7D9B0018B99C /* FontHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD23D9270A7D9B0018B99C /* FontHelper.swift */; };
 		9FCD23DC270A8C7D0018B99C /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD23DB270A8C7D0018B99C /* UIView+Additions.swift */; };
+		9FED98192711C192006664D2 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED98182711C192006664D2 /* LocationService.swift */; };
+		9FF54E262712541C00A44B8B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF54E252712541C00A44B8B /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F3AC5C82712FB7000AB0B33 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		9F3AC5CA271314E000AB0B33 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		9F3AC5D027136A1B00AB0B33 /* ProductDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewModel.swift; sourceTree = "<group>"; };
+		9F3AC5D227136A3600AB0B33 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
+		9F3AC5D427136A6200AB0B33 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		9F484DCB2710B09500772B5D /* GothamSSm-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamSSm-Book.otf"; sourceTree = "<group>"; };
 		9F484DCD2710B24700772B5D /* GothamSSm-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamSSm-Light.otf"; sourceTree = "<group>"; };
 		9F484DCE2710B24700772B5D /* GothamSSm-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamSSm-BlackItalic.otf"; sourceTree = "<group>"; };
@@ -75,6 +91,10 @@
 		9F77D99B270CE34900196E95 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		9F77D99E270CEC3800196E95 /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		9F77D9A0270CFCB500196E95 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9F8E1966271AE38C00E02F9E /* EmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultView.swift; sourceTree = "<group>"; };
+		9F8E196A271CDDC200E02F9E /* AppUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtilities.swift; sourceTree = "<group>"; };
+		9F8E196C271D06AE00E02F9E /* UserDefaultsKeyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeyHelper.swift; sourceTree = "<group>"; };
+		9FBD360C271D7C4700F952F5 /* HomeAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAnnotationView.swift; sourceTree = "<group>"; };
 		9FCD23BB2708D8C50018B99C /* NetworkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTarget.swift; sourceTree = "<group>"; };
 		9FCD23BD2708FD270018B99C /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		9FCD23BF270A42750018B99C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -88,6 +108,8 @@
 		9FCD23D5270A72960018B99C /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
 		9FCD23D9270A7D9B0018B99C /* FontHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontHelper.swift; sourceTree = "<group>"; };
 		9FCD23DB270A8C7D0018B99C /* UIView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
+		9FED98182711C192006664D2 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		9FF54E252712541C00A44B8B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +123,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F3AC5C62712F9D100AB0B33 /* ProductDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9F3AC5D427136A6200AB0B33 /* ProductDetailView.swift */,
+				9F3AC5D027136A1B00AB0B33 /* ProductDetailViewModel.swift */,
+				9F3AC5D227136A3600AB0B33 /* ProductDetailViewController.swift */,
+			);
+			path = ProductDetail;
+			sourceTree = "<group>";
+		};
+		9F3AC5C72712F9E200AB0B33 /* InfoScene */ = {
+			isa = PBXGroup;
+			children = (
+				9F3AC5C82712FB7000AB0B33 /* InfoView.swift */,
+				9F3AC5CA271314E000AB0B33 /* InfoViewController.swift */,
+			);
+			path = InfoScene;
+			sourceTree = "<group>";
+		};
 		9F680E022703E81900182822 = {
 			isa = PBXGroup;
 			children = (
@@ -123,7 +164,7 @@
 				9F680E22270434DF00182822 /* Infrastructure */,
 				9F680E23270434EC00182822 /* Architecture */,
 				9F77A33827082F8C00384E1D /* Scenes */,
-				9F77A33927082F9A00384E1D /* Models */,
+				9F77A33927082F9A00384E1D /* Model */,
 				9F77A33A27082FAA00384E1D /* Services */,
 				9F77A33B27082FBD00384E1D /* Extensions */,
 				9FCD23CE270A575A0018B99C /* Helpers */,
@@ -151,6 +192,7 @@
 				9F680E4527052E0800182822 /* BaseViewController.swift */,
 				9F680E4727052E2300182822 /* ViewModel.swift */,
 				9F680E492705948400182822 /* ViewControllerProtocol.swift */,
+				9FF54E252712541C00A44B8B /* TabBarController.swift */,
 			);
 			path = Architecture;
 			sourceTree = "<group>";
@@ -188,16 +230,19 @@
 			isa = PBXGroup;
 			children = (
 				9FCD23C9270A4EE30018B99C /* Products */,
+				9F3AC5C62712F9D100AB0B33 /* ProductDetail */,
+				9F3AC5C72712F9E200AB0B33 /* InfoScene */,
+				9F8E1965271AE25000E02F9E /* EmptyResultView */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
 		};
-		9F77A33927082F9A00384E1D /* Models */ = {
+		9F77A33927082F9A00384E1D /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				9FCD23C7270A49A30018B99C /* Product.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		9F77A33A27082FAA00384E1D /* Services */ = {
@@ -208,6 +253,7 @@
 				9FCD23BF270A42750018B99C /* NetworkService.swift */,
 				9FCD23BB2708D8C50018B99C /* NetworkTarget.swift */,
 				9FCD23BD2708FD270018B99C /* NetworkError.swift */,
+				9FED98182711C192006664D2 /* LocationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -226,8 +272,17 @@
 			isa = PBXGroup;
 			children = (
 				9F77D99E270CEC3800196E95 /* Identifiable.swift */,
+				9F8E196A271CDDC200E02F9E /* AppUtilities.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		9F8E1965271AE25000E02F9E /* EmptyResultView */ = {
+			isa = PBXGroup;
+			children = (
+				9F8E1966271AE38C00E02F9E /* EmptyResultView.swift */,
+			);
+			path = EmptyResultView;
 			sourceTree = "<group>";
 		};
 		9FCD23B92708D88B0018B99C /* API */ = {
@@ -261,6 +316,7 @@
 			children = (
 				9FCD23CB270A4EFA0018B99C /* Cells */,
 				9F77D997270CE06300196E95 /* ProductsView.swift */,
+				9FBD360C271D7C4700F952F5 /* HomeAnnotationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -279,6 +335,7 @@
 				9FCD23CF270A57920018B99C /* AssetHelper.swift */,
 				9FCD23D5270A72960018B99C /* ColorHelper.swift */,
 				9FCD23D9270A7D9B0018B99C /* FontHelper.swift */,
+				9F8E196C271D06AE00E02F9E /* UserDefaultsKeyHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -365,15 +422,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F3AC5D527136A6200AB0B33 /* ProductDetailView.swift in Sources */,
+				9F3AC5D327136A3600AB0B33 /* ProductDetailViewController.swift in Sources */,
 				9F680E4A2705948400182822 /* ViewControllerProtocol.swift in Sources */,
+				9FF54E262712541C00A44B8B /* TabBarController.swift in Sources */,
 				9FCD23BE2708FD270018B99C /* NetworkError.swift in Sources */,
 				9FCD23C6270A48E00018B99C /* ProductAPIService.swift in Sources */,
 				9F680E4827052E2300182822 /* ViewModel.swift in Sources */,
 				9F77D99C270CE34900196E95 /* ProductsViewController.swift in Sources */,
 				9F77D998270CE06300196E95 /* ProductsView.swift in Sources */,
+				9F3AC5C92712FB7000AB0B33 /* InfoView.swift in Sources */,
 				9FCD23DC270A8C7D0018B99C /* UIView+Additions.swift in Sources */,
 				9FCD23BC2708D8C50018B99C /* NetworkTarget.swift in Sources */,
+				9F8E196D271D06AE00E02F9E /* UserDefaultsKeyHelper.swift in Sources */,
+				9F3AC5CB271314E000AB0B33 /* InfoViewController.swift in Sources */,
+				9F8E196B271CDDC200E02F9E /* AppUtilities.swift in Sources */,
 				9FCD23C0270A42750018B99C /* NetworkService.swift in Sources */,
+				9FBD360D271D7C4700F952F5 /* HomeAnnotationView.swift in Sources */,
 				9F680E4427052D1500182822 /* BaseView.swift in Sources */,
 				9F77D99A270CE31E00196E95 /* ProductsViewModel.swift in Sources */,
 				9F680E4627052E0800182822 /* BaseViewController.swift in Sources */,
@@ -382,7 +447,10 @@
 				9F77D99F270CEC3800196E95 /* Identifiable.swift in Sources */,
 				9FCD23CD270A4F350018B99C /* ProductTableViewCell.swift in Sources */,
 				9F680E112703E81900182822 /* SceneDelegate.swift in Sources */,
+				9FED98192711C192006664D2 /* LocationService.swift in Sources */,
 				9FCD23DA270A7D9B0018B99C /* FontHelper.swift in Sources */,
+				9F3AC5D127136A1B00AB0B33 /* ProductDetailViewModel.swift in Sources */,
+				9F8E1967271AE38C00E02F9E /* EmptyResultView.swift in Sources */,
 				9FCD23C2270A45B00018B99C /* URL+Additions.swift in Sources */,
 				9FCD23D4270A58150018B99C /* UIImageView+Additions.swift in Sources */,
 				9FCD23D0270A57920018B99C /* AssetHelper.swift in Sources */,
@@ -521,9 +589,11 @@
 				DEVELOPMENT_TEAM = 986PSV4D2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Demo Real Estate App/Infrastructure/Info.plist";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This application needs your location to calculate distance between you and home.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This application needs your location to calculate distance between you and home.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -534,7 +604,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -548,9 +618,11 @@
 				DEVELOPMENT_TEAM = 986PSV4D2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Demo Real Estate App/Infrastructure/Info.plist";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This application needs your location to calculate distance between you and home.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This application needs your location to calculate distance between you and home.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -561,7 +633,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
