@@ -45,8 +45,6 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
     locationManager = CLLocationManager()
     locationManager?.delegate = self
     
-    setDefaultLocationValues()
-    
     if CLLocationManager.locationServicesEnabled() {
       switch locationManager!.authorizationStatus {
       case .authorizedAlways, .authorizedWhenInUse:
@@ -55,7 +53,6 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
         showPermissionDeniedAlert(_title: "Location permission denied!")
       case  .notDetermined:
         locationManager?.requestAlwaysAuthorization()
-//        viewModel.fetchAllProducts()
       @unknown default:
         viewModel.fetchAllProducts()
       }
@@ -82,22 +79,12 @@ extension ProductsViewController: CLLocationManagerDelegate {
   }
   
   func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-    setDefaultLocationValues()
+  
     if status == .authorizedAlways || status == .authorizedWhenInUse {
       locationManager!.requestLocation()
     }
     else if status == .denied || status == .restricted {
       showPermissionDeniedAlert(_title: "Location permission denied!")
-    }
-    else if status == .notDetermined {
-      if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
-        if CLLocationManager.isRangingAvailable() {
-          viewModel.fetchAllProducts()
-        }
-      }
-    }
-    else {
-      viewModel.fetchAllProducts()
     }
   }
   
@@ -108,13 +95,13 @@ extension ProductsViewController: CLLocationManagerDelegate {
   }
   
   private func showPermissionDeniedAlert(_title: String) {
+    setDefaultLocationValues()
+    viewModel.fetchAllProducts()
     DispatchQueue.main.async {
       let title = _title
       let description = "Amsterdam is set as your default location."
       let alert = UIAlertController(title: title, message: description, preferredStyle: .alert)
-      alert.addAction(.init(title: "Okey", style: .default, handler: { _ in
-        self.viewModel.fetchAllProducts()
-      }))
+      alert.addAction(.init(title: "Okey", style: .default))
       self.present(alert, animated: true)
     }
   }
