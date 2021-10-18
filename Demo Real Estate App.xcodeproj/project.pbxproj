@@ -589,8 +589,8 @@
 				DEVELOPMENT_TEAM = 986PSV4D2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Demo Real Estate App/Infrastructure/Info.plist";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This application needs your location to calculate distance between you and home.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This application needs your location to calculate distance between you and home.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This application needs your location in order to be informed how\nfar each house is from your location.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This application needs your location in order to be informed how\nfar each house is from your location.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -618,8 +618,8 @@
 				DEVELOPMENT_TEAM = 986PSV4D2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Demo Real Estate App/Infrastructure/Info.plist";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This application needs your location to calculate distance between you and home.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This application needs your location to calculate distance between you and home.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This application needs your location in order to be informed how\nfar each house is from your location.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This application needs your location in order to be informed how\nfar each house is from your location.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

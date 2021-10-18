@@ -93,18 +93,6 @@ extension ProductsView: UISearchBarDelegate {
     delegate?.searchBarCancelButtonClicked()
   }
   
-  func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-    searchBar.resignFirstResponder()
-    if searchBar.text == "" {
-      delegate?.searchBarSearchButtonClicked(searchBar.text)
-      print ("******A")
-    }
-    else {
-      delegate?.searchBarCancelButtonClicked()
-      print ("******B")
-    }
-  }
-  
 }
 
 // MARK: - Private
