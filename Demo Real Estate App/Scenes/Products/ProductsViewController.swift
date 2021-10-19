@@ -41,16 +41,56 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     locationManager = CLLocationManager()
     locationManager?.delegate = self
-    
+    checkAuthorizationForLocation()
+  }
+  
+}
+
+// MARK: - CLLocationManagerDelegate
+extension ProductsViewController: CLLocationManagerDelegate {
+  
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+      if let location = locations.first{
+        setUserCurrentLocationCoordinates(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude))
+        viewModel.fetchAllProducts()
+      }
+  }
+  
+  func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    showPermissionDeniedAlert(title: "An error occured!")
+  }
+  
+  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    checkAuthorizationForLocation()
+  }
+  
+  private func setDefaultLocationValues() {
+    let latitude = getDefaultLatitudeFromInfoPlist()
+    let longitude = getDefaultLongitudeFromInfoPlist()
+    setUserCurrentLocationCoordinates(latitude: latitude, longitude: longitude)
+  }
+  
+  private func showPermissionDeniedAlert(title: String) {
+    setDefaultLocationValues()
+    viewModel.fetchAllProducts()
+    DispatchQueue.main.async {
+      let title = title
+      let description = "Amsterdam is set as your default location."
+      let alert = UIAlertController(title: title, message: description, preferredStyle: .alert)
+      alert.addAction(.init(title: "Okey", style: .default))
+      self.present(alert, animated: true)
+    }
+  }
+  
+  private func checkAuthorizationForLocation() {
     if CLLocationManager.locationServicesEnabled() {
       switch locationManager!.authorizationStatus {
       case .authorizedAlways, .authorizedWhenInUse:
         locationManager!.requestLocation()
       case .denied, .restricted:
-        showPermissionDeniedAlert(_title: "Location permission denied!")
+        showPermissionDeniedAlert(title: "Location permission denied!")
       case  .notDetermined:
         locationManager?.requestAlwaysAuthorization()
       @unknown default:
@@ -59,50 +99,6 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
     }
     else {
       locationManager?.requestAlwaysAuthorization()
-    }
-    
-  }
-}
-
-// MARK: - CLLocationManagerDelegate
-extension ProductsViewController: CLLocationManagerDelegate {
-  
-  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-      if let location = locations.first{
-        setUserCurrentLocationCoordinates(_latitude: String(location.coordinate.latitude), _longitude: String(location.coordinate.longitude))
-        viewModel.fetchAllProducts()
-      }
-  }
-  
-  func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-    showPermissionDeniedAlert(_title: "An error occured!")
-  }
-  
-  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-  
-    if status == .authorizedAlways || status == .authorizedWhenInUse {
-      locationManager!.requestLocation()
-    }
-    else if status == .denied || status == .restricted {
-      showPermissionDeniedAlert(_title: "Location permission denied!")
-    }
-  }
-  
-  private func setDefaultLocationValues() {
-    let latitude = getDefaultLatitudeFromInfoPlist()
-    let longitude = getDefaultLongitudeFromInfoPlist()
-    setUserCurrentLocationCoordinates(_latitude: latitude, _longitude: longitude)
-  }
-  
-  private func showPermissionDeniedAlert(_title: String) {
-    setDefaultLocationValues()
-    viewModel.fetchAllProducts()
-    DispatchQueue.main.async {
-      let title = _title
-      let description = "Amsterdam is set as your default location."
-      let alert = UIAlertController(title: title, message: description, preferredStyle: .alert)
-      alert.addAction(.init(title: "Okey", style: .default))
-      self.present(alert, animated: true)
     }
   }
   

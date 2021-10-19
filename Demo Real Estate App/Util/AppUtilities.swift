@@ -11,12 +11,12 @@ import CoreLocation
 /// Calculates distance between user location and home location
 /// - Parameter _latitude: home latitude
 /// - Parameter _longitude: home longitude
-func calculateDistance(_latitude:Int, _longitude:Int) -> String {
+func calculateDistance(latitude:Int, longitude:Int) -> String {
   let defaults = UserDefaults.standard
   
   let userLocation = CLLocation(latitude: CLLocationDegrees(defaults.object(forKey: UserDefaultsKeyHelper.amsterdamLatitude) as! String)!, longitude: CLLocationDegrees(defaults.object(forKey: UserDefaultsKeyHelper.amsterdamLongitude) as! String)!)
   
-  let targetLocation = CLLocation(latitude: CLLocationDegrees(_latitude), longitude: CLLocationDegrees(_longitude))
+  let targetLocation = CLLocation(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
   
   //Measuring distance (in km)
   let distance = userLocation.distance(from: targetLocation) / 1000
@@ -35,10 +35,10 @@ func getDefaultLongitudeFromInfoPlist () -> String {
   return Longitude
 }
 
-func setUserCurrentLocationCoordinates (_latitude:String, _longitude:String) {
+func setUserCurrentLocationCoordinates (latitude:String, longitude:String) {
   let defaults = UserDefaults.standard
-  defaults.set(_latitude, forKey:UserDefaultsKeyHelper.amsterdamLatitude)
-  defaults.set(_longitude, forKey:UserDefaultsKeyHelper.amsterdamLongitude)
+  defaults.set(latitude, forKey:UserDefaultsKeyHelper.amsterdamLatitude)
+  defaults.set(longitude, forKey:UserDefaultsKeyHelper.amsterdamLongitude)
 }
 
 

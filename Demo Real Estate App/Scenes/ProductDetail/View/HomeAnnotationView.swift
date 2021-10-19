@@ -12,7 +12,7 @@ class HomeAnnotationView: MKPinAnnotationView {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
 
         canShowCallout = true
-        rightCalloutAccessoryView = UIButton(type: .infoLight)
+      rightCalloutAccessoryView = UIButton(type: .infoLight)
     }
 
     required init?(coder aDecoder: NSCoder) {

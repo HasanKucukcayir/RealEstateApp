@@ -126,7 +126,7 @@
 		9F3AC5C62712F9D100AB0B33 /* ProductDetail */ = {
 			isa = PBXGroup;
 			children = (
-				9F3AC5D427136A6200AB0B33 /* ProductDetailView.swift */,
+				9F709D94271EB6D500CCE7E0 /* View */,
 				9F3AC5D027136A1B00AB0B33 /* ProductDetailViewModel.swift */,
 				9F3AC5D227136A3600AB0B33 /* ProductDetailViewController.swift */,
 			);
@@ -226,6 +226,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		9F709D94271EB6D500CCE7E0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9F3AC5D427136A6200AB0B33 /* ProductDetailView.swift */,
+				9FBD360C271D7C4700F952F5 /* HomeAnnotationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		9F77A33827082F8C00384E1D /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,7 +325,6 @@
 			children = (
 				9FCD23CB270A4EFA0018B99C /* Cells */,
 				9F77D997270CE06300196E95 /* ProductsView.swift */,
-				9FBD360C271D7C4700F952F5 /* HomeAnnotationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

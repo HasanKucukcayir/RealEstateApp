@@ -67,20 +67,4 @@ extension ProductDetailViewController: ProductDetailViewDelegate {
   func didPressBack() {
     navigationController?.popViewController(animated: true)
   }
-  func showRoute() {
-    print ("showRoute")
-  }
-}
-
-// MARK: - MKMapViewDelegate
-extension ProductDetailViewController: MKMapViewDelegate {
-
-  func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-     print("calloutAccessoryControlTapped")
-  }
-
-  func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView){
-     print("didSelectAnnotationTapped")
-  }
-  
 }

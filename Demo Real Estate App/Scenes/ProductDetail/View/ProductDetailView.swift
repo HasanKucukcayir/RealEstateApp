@@ -10,7 +10,6 @@ import MapKit
 
 protocol ProductDetailViewDelegate: UIViewController {
   func didPressBack()
-  func showRoute()
 }
 
 final class ProductDetailView: BaseView {
@@ -52,6 +51,7 @@ final class ProductDetailView: BaseView {
     addSubviews()
     setupConstraints()
   }
+  
 }
 
 
@@ -60,10 +60,26 @@ final class ProductDetailView: BaseView {
   func didPressBack() {
     delegate?.didPressBack()
   }
-  
-  func showRoute() {
-    delegate?.showRoute()
+}
+
+// MARK: - MKMapViewDelegate
+extension ProductDetailView: MKMapViewDelegate {
+
+  func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView){
+    guard let annotation = view.annotation
+    else {
+      return
+    }
+    
+    let urlString = "http://maps.apple.com/?daddr=\(annotation.coordinate.latitude),\(annotation.coordinate.longitude)"
+    guard let url = URL(string: urlString) else
+    {
+      return
+    }
+    
+    UIApplication.shared.open(url, options: [:], completionHandler: nil)
   }
+  
 }
 
 // MARK: - Public
@@ -84,14 +100,14 @@ extension ProductDetailView {
     
     sizeLabel.text = "\(model.size)"
     
-    let distance = calculateDistance(_latitude: model.latitude, _longitude: model.longitude)
+    let distance = calculateDistance(latitude: model.latitude, longitude: model.longitude)
     distanceLabel.text = distance
     
     descriptionLabel.text = model.description
     
     let homeLocation = CLLocationCoordinate2D(latitude: CLLocationDegrees(model.latitude), longitude: CLLocationDegrees(model.longitude))
     let homeRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: homeLocation.latitude, longitude: homeLocation.longitude), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-    mapView.setRegion(homeRegion, animated: true)
+    self.mapView.setRegion(homeRegion, animated: true)
 
     // Show home location on map with a pin.
     let homePin = MKPointAnnotation()
@@ -228,6 +244,7 @@ private extension ProductDetailView {
   
   func setupMapView() {
     mapView = MKMapView()
+    mapView.delegate = self
 //    mapView.addTarget(self, action: #selector(showRoute), for: .allTouchEvents)
   }
 }
