@@ -31,6 +31,9 @@ final class ProductDetailView: BaseView {
   private var descriptionLabel: UILabel!
   private var locationLabel: UILabel!
   private var mapView: MKMapView!
+  //
+  private var scrollView: UIScrollView!
+  private var stackView: UIStackView!
   
   private enum ViewTraits {
     static let defaultPadding: CGFloat = 24
@@ -43,6 +46,7 @@ final class ProductDetailView: BaseView {
     static let containerViewRadius: CGFloat = 16
     static let houseImageViewHeight: CGFloat = 250
     static let featureLogosWidthMultiplier: CGFloat = 0.04
+    static let mapViewWidthMultiplier: CGFloat = 3/4
   }
   
   override init(frame: CGRect) {
@@ -64,8 +68,8 @@ final class ProductDetailView: BaseView {
 
 // MARK: - MKMapViewDelegate
 extension ProductDetailView: MKMapViewDelegate {
-
-  func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView){
+  
+  func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
     guard let annotation = view.annotation
     else {
       return
@@ -76,8 +80,7 @@ extension ProductDetailView: MKMapViewDelegate {
     {
       return
     }
-    
-    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    UIApplication.shared.open(url)
   }
   
 }
@@ -138,6 +141,8 @@ private extension ProductDetailView {
     setupDescriptionLabel()
     setupLocationLabel()
     setupMapView()
+    setupScrollView()
+    setupStackView()
   }
   
   func setupHouseImageView() {
@@ -150,7 +155,6 @@ private extension ProductDetailView {
   func setupBackButton() {
     backButton = UIButton()
     backButton.setImage(AssetHelper.backButtonImage, for: .normal)
-//    backButton.contentMode = .scaleAspectFit
     backButton.tintColor = .black
     backButton.addTarget(self, action: #selector(didPressBack), for: .touchUpInside)
   }
@@ -242,11 +246,21 @@ private extension ProductDetailView {
     locationLabel.numberOfLines = 0
   }
   
+  func setupScrollView() {
+    scrollView = UIScrollView()
+  }
+  
+  func setupStackView() {
+    stackView = UIStackView()
+    stackView.axis = .vertical
+    stackView.spacing = ViewTraits.defaultPadding
+  }
+  
   func setupMapView() {
     mapView = MKMapView()
     mapView.delegate = self
-//    mapView.addTarget(self, action: #selector(showRoute), for: .allTouchEvents)
   }
+ 
 }
 
 // MARK: - Constraints
@@ -266,10 +280,13 @@ private extension ProductDetailView {
     containerView.addSubviewVC(sizeLabel)
     containerView.addSubviewVC(distanceImageView)
     containerView.addSubviewVC(distanceLabel)
-    containerView.addSubviewVC(descriptionHeaderLabel)
-    containerView.addSubviewVC(descriptionLabel)
-    containerView.addSubviewVC(locationLabel)
-    containerView.addSubviewVC(mapView)
+    containerView.addSubviewVC(scrollView)
+    scrollView.addSubviewVC(stackView)
+    stackView.addArrangedSubview(descriptionHeaderLabel)
+    stackView.addArrangedSubview(descriptionLabel)
+    stackView.addArrangedSubview(locationLabel)
+    stackView.addArrangedSubview(mapView)
+    
   }
   
   func setupConstraints() {
@@ -330,21 +347,20 @@ private extension ProductDetailView {
       bedroomImageView.widthAnchor.constraint(equalTo: distanceImageView.widthAnchor),
       bedroomImageView.heightAnchor.constraint(equalTo: bedroomImageView.widthAnchor),
       
-      descriptionHeaderLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: ViewTraits.headerPadding),
-      descriptionHeaderLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: ViewTraits.defaultPadding),
+      scrollView.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: ViewTraits.defaultPadding),
+      scrollView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -ViewTraits.defaultPadding),
+      scrollView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: ViewTraits.defaultPadding),
+      scrollView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -ViewTraits.defaultPadding),
       
-      descriptionLabel.topAnchor.constraint(equalTo: descriptionHeaderLabel.bottomAnchor, constant: ViewTraits.defaultPadding),
-      descriptionLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: ViewTraits.defaultPadding),
-      descriptionLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -ViewTraits.defaultPadding),
+      stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+      stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+      stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+      stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
       
-      locationLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: ViewTraits.defaultPadding),
-      locationLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: ViewTraits.defaultPadding),
+      stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
       
-      mapView.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: ViewTraits.defaultPadding),
-      mapView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -ViewTraits.defaultPadding),
-      mapView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: ViewTraits.defaultPadding),
-      mapView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -ViewTraits.defaultPadding),
-                                   
+      mapView.widthAnchor.constraint(equalTo: descriptionLabel.widthAnchor),
+      mapView.heightAnchor.constraint(equalTo: mapView.widthAnchor, multiplier: ViewTraits.mapViewWidthMultiplier)
     ])
   }
   
