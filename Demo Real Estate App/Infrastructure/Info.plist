@@ -33,7 +33,7 @@
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>
-		<string>red</string>
+		<string>redCustom</string>
 		<key>UIImageName</key>
 		<string>splash_logo</string>
 		<key>UIImageRespectsSafeAreaInsets</key>
