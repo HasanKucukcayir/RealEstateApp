@@ -13,14 +13,13 @@ protocol ProductDetailViewModelProtocol: ViewModel {
 
 final class ProductDetailViewModel: ViewModel {
   weak var delegate: ProductDetailViewModelDelegate?
-  
+
   private var product: Product
 
   init(product: Product) {
     self.product = product
   }
-  
-  
+
 }
 
 // MARK: - ProductDetailViewModelProtocol

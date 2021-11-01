@@ -15,4 +15,3 @@ enum ColorHelper {
   static let medium = UIColor(named: "medium")!
   static let light = UIColor(named: "light")!
 }
-

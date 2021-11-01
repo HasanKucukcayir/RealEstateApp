@@ -8,7 +8,7 @@
 import UIKit
 
 protocol InfoViewDelegate: UIViewController {
-  func companyWebsiteButtonClicked(_ text:String?)
+  func companyWebsiteButtonClicked(_ text: String?)
 }
 
 final class InfoView: BaseView {
@@ -18,8 +18,11 @@ final class InfoView: BaseView {
   private var companyLogoImageView: UIImageView!
   private var companyNameLabel: UILabel!
   private var companyWebsiteButton: UIButton!
+  private var scrollView: UIScrollView!
+  private var stackView: UIStackView!
+  private var containerView: UIView!
   weak var delegate: InfoViewDelegate?
-  
+
   private enum ViewTraits {
     static let defaultPadding: CGFloat = 24
     static let contentPadding: CGFloat = 14
@@ -29,7 +32,7 @@ final class InfoView: BaseView {
     static let companyWebSiteButtonHeight: CGFloat = 20
     static let companyImageViewWidthMultiplier: CGFloat = 0.33
   }
-  
+
   override init(frame: CGRect) {
     super .init(frame: frame)
     setupUIComponents()
@@ -40,108 +43,135 @@ final class InfoView: BaseView {
 
 // MARK: - Private
 private extension InfoView {
-  
+
   func setupUIComponents() {
     backgroundColor = ColorHelper.lightGray
     setupTopHeaderLabel()
     setupDescriptionLabel()
     setupSecondHeaderLabel()
+    setupContainerView()
     setupCompanyLogoImageView()
     setupCompanyNameLabel()
     setupCompanyWebsiteButton()
+    setupScrollView()
+    setupStackView()
   }
-  
+
+  func setupScrollView() {
+    scrollView = UIScrollView()
+  }
+
+  func setupStackView() {
+    stackView = UIStackView()
+    stackView.axis = .vertical
+    stackView.spacing = ViewTraits.contentPadding
+  }
+
   func setupTopHeaderLabel () {
     topHeaderLabel = UILabel()
-    topHeaderLabel.text = "ABOUT"
+    topHeaderLabel.text = localizedString(forKey: Constants.LocalizedStrings.topHeaderLabelText)
     topHeaderLabel.textColor = ColorHelper.strong
     topHeaderLabel.font = UIFont(name: FontHelper.bold, size: 18)
   }
 
   func setupDescriptionLabel () {
     descriptionLabel = UILabel()
-    descriptionLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultrices risus eu sapien ullamcorper pellentesque. Nullam eu elementum lacus. Integer id nisi mauris. Sed blandit hendrerit eros, sed imperdiet odio tempor eget. Pellentesque volutpat lectus ut est lobortis ornare. Etiam tristique vestibulum turpis, eget egestas justo porta sit amet. Nullam massa ligula, fermentum non sagittis ac, sodales eget justo. Sed id turpis rhoncus, rhoncus ipsum eget, facilisis tellus. Aliquam consectetur tincidunt sapien, id feugiat nibh porta eu. Duis porta finibus condimentum. Integer luctus tellus sit amet neque rhoncus porta. Cras lobortis lorem ut ornare facilisis. In hac habitasse platea dictumst. Nunc mattis urna tempus eleifend rhoncus. Ut molestie nec justo ac gravida."
+    descriptionLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     descriptionLabel.textColor = ColorHelper.medium
     descriptionLabel.numberOfLines = 0
     descriptionLabel.font = UIFont(name: FontHelper.book, size: 12)
   }
-  
+
   func setupSecondHeaderLabel () {
     secondHeaderLabel = UILabel()
-    secondHeaderLabel.text = "Design and Development"
+    secondHeaderLabel.text = localizedString(forKey: Constants.LocalizedStrings.secondHeaderLabelText)
     secondHeaderLabel.textColor = ColorHelper.strong
     secondHeaderLabel.font = UIFont(name: FontHelper.bold, size: 18)
   }
-  
+
+  func setupContainerView() {
+    containerView = UIView()
+    containerView.backgroundColor = ColorHelper.lightGray
+  }
+
   func setupCompanyLogoImageView () {
     companyLogoImageView = UIImageView()
     companyLogoImageView.contentMode = .scaleAspectFit
     companyLogoImageView.image = AssetHelper.dttLogo
   }
-  
+
   func setupCompanyNameLabel () {
     companyNameLabel = UILabel()
-    companyNameLabel.text = "by DTT"
+    companyNameLabel.text = localizedString(forKey: Constants.LocalizedStrings.companyNameLabelText)
     companyNameLabel.textColor = ColorHelper.strong
     companyNameLabel.font = UIFont(name: FontHelper.book, size: 12)
   }
-  
+
   func setupCompanyWebsiteButton () {
     companyWebsiteButton = UIButton()
-    companyWebsiteButton.setTitle("d-tt.nl", for: .normal)
+    companyWebsiteButton.setTitle(Constants.companyWebsiteText, for: .normal)
     companyWebsiteButton.setTitleColor(.systemBlue, for: .normal)
     companyWebsiteButton.titleLabel?.font = UIFont(name: FontHelper.book, size: 12)
     companyWebsiteButton.addTarget(self, action: #selector(didPressCompanyWebSiteButton), for: .touchUpInside)
   }
-  
+
 }
 
 // MARK: - Constraints
 private extension InfoView {
-  
+
   func addSubviews() {
-    addSubviewVC(topHeaderLabel)
-    addSubviewVC(descriptionLabel)
-    addSubviewVC(secondHeaderLabel)
-    addSubviewVC(companyLogoImageView)
-    addSubviewVC(companyNameLabel)
-    addSubviewVC(companyWebsiteButton)
+    addSubviewVC(scrollView)
+
+    scrollView.addSubviewVC(stackView)
+
+    containerView.addSubviewVC(companyLogoImageView)
+    containerView.addSubviewVC(companyNameLabel)
+    containerView.addSubviewVC(companyWebsiteButton)
+
+    stackView.addArrangedSubview(topHeaderLabel)
+    stackView.addArrangedSubview(descriptionLabel)
+    stackView.addArrangedSubview(secondHeaderLabel)
+    stackView.addArrangedSubview(containerView)
   }
-  
+
   func setupConstraints() {
     NSLayoutConstraint.activate([
-      topHeaderLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: ViewTraits.contentPadding),
-      topHeaderLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: ViewTraits.defaultPadding),
-      topHeaderLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -ViewTraits.defaultPadding),
       topHeaderLabel.heightAnchor.constraint(equalToConstant: ViewTraits.headerHeight),
-      
-      descriptionLabel.topAnchor.constraint(equalTo: topHeaderLabel.bottomAnchor, constant: ViewTraits.contentPadding),
-      descriptionLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: ViewTraits.defaultPadding),
-      descriptionLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -ViewTraits.defaultPadding),
 
-      secondHeaderLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: ViewTraits.contentPadding),
-      secondHeaderLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: ViewTraits.defaultPadding),
-      secondHeaderLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -ViewTraits.defaultPadding),
       secondHeaderLabel.heightAnchor.constraint(equalToConstant: ViewTraits.headerHeight),
-      
-      companyLogoImageView.topAnchor.constraint(equalTo: secondHeaderLabel.bottomAnchor, constant: ViewTraits.smallPadding),
-      companyLogoImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: ViewTraits.defaultPadding),
+
+      companyLogoImageView.topAnchor.constraint(equalTo: containerView.topAnchor),
+      companyLogoImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
       companyLogoImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: ViewTraits.companyImageViewWidthMultiplier),
-      
+
+      containerView.heightAnchor.constraint(equalTo: companyLogoImageView.heightAnchor),
+
       companyNameLabel.leadingAnchor.constraint(equalTo: companyLogoImageView.trailingAnchor, constant: ViewTraits.defaultPadding),
       companyNameLabel.bottomAnchor.constraint(equalTo: companyLogoImageView.centerYAnchor),
-      
+
       companyWebsiteButton.leadingAnchor.constraint(equalTo: companyLogoImageView.trailingAnchor, constant: ViewTraits.defaultPadding),
       companyWebsiteButton.topAnchor.constraint(equalTo: companyLogoImageView.centerYAnchor),
-      companyWebsiteButton.heightAnchor.constraint(equalToConstant: ViewTraits.companyWebSiteButtonHeight)
-      
+      companyWebsiteButton.heightAnchor.constraint(equalToConstant: ViewTraits.companyWebSiteButtonHeight),
+
+      scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+      scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -ViewTraits.defaultPadding),
+      scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: ViewTraits.defaultPadding),
+      scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -ViewTraits.defaultPadding),
+
+      stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+      stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+      stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+      stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+
+      stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
     ])
   }
-  
+
 }
 
 @objc private extension InfoView {
   func didPressCompanyWebSiteButton(_ sender: UIButton) {
-    delegate?.companyWebsiteButtonClicked("https://www.d-tt.nl")
+    delegate?.companyWebsiteButtonClicked(Constants.companyWebsiteUrl)
   }
 }

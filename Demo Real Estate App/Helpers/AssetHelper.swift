@@ -18,4 +18,6 @@ enum AssetHelper {
   static let infoImage = UIImage(named: "info-button")
   static let dttLogo = UIImage(named: "dtt_logo")
   static let emptyResultImage = UIImage(named: "undraw_empty_xct9-2")
+  static let searchImage = UIImage(named: "search")
+  static let closeImage = UIImage(named: "close-2")
 }

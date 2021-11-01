@@ -10,11 +10,9 @@ import CoreLocation
 protocol ProductsViewModelProtocol: ViewModel {
   /// Fetches All Products
   func fetchAllProducts()
-  
   /// Filters Products based on id
   /// - Parameter id: id to be filter parameter
   func filterProduct(with id: String?) -> [ProductTableViewCellModel]
-  
   /// Select description
   /// - Parameter indexPath: current indexpath of item
   func selectItem(at indexPath: IndexPath) -> Product
@@ -26,7 +24,7 @@ final class ProductsViewModel: ViewModel {
 
   private var productList: ProductList = []
   private var filteredList: ProductList?
-  
+
   init (productAPIService: ProductApiServiceProtocol) {
     self.productAPIService = productAPIService
   }
@@ -34,14 +32,14 @@ final class ProductsViewModel: ViewModel {
 
 // MARK: - ProductsViewModelProtocol
 extension ProductsViewModel: ProductsViewModelProtocol {
-  
+
   func fetchAllProducts() {
     cleanDataSource()
     productAPIService.fetchAllProducts { result in
       switch result {
       case .failure:
         self.delegate?.didFailForGettingProducts()
-        
+
       case .success(var productList):
         productList.sort {$0.price < $1.price}
         self.productList = productList
@@ -50,7 +48,7 @@ extension ProductsViewModel: ProductsViewModelProtocol {
       }
     }
   }
-  
+
   func filterProduct(with id: String?) -> [ProductTableViewCellModel] {
     guard let id = id else {
       filteredList = nil
@@ -59,7 +57,7 @@ extension ProductsViewModel: ProductsViewModelProtocol {
     filteredList = productList.filter { $0.zip.lowercased().range(of: id.lowercased()) != nil || $0.city.lowercased().range(of: id.lowercased()) != nil}
     return generateProductTableViewCellModel(from: filteredList!)
   }
-  
+
   func selectItem(at indexPath: IndexPath) -> Product {
     let row = indexPath.row
     guard let filtered = filteredList else {
@@ -74,9 +72,8 @@ extension ProductsViewModel {
 
   func generateProductTableViewCellModel(from dataSource: ProductList) -> [ProductTableViewCellModel] {
     dataSource.map {
-      
       let imageUrl = URL(string: Constants.imageUrl)!.appendingPathComponent($0.imgURL)
-      let address = "\($0.zip.filter{!$0.isWhitespace}) \($0.city)"
+      let address = "\($0.zip.filter {!$0.isWhitespace}) \($0.city)"
       let formatter = NumberFormatter()
       formatter.numberStyle = .decimal
       let price = "$\(formatter.string(from: NSNumber(value: $0.price))!)"
@@ -88,10 +85,9 @@ extension ProductsViewModel {
       return ProductTableViewCellModel(imageUrl: imageUrl, price: price, address: address, numberOfBedroom: numberOfBedroom, numberOfBathroom: numberOfBathroom, size: size, distance: distance)
     }
   }
-  
+
   func cleanDataSource() {
     filteredList = nil
     productList = []
   }
-  
 }

@@ -1,0 +1,33 @@
+/* 
+  Default.strings
+  Demo Real Estate App
+
+  Created by MacBookAir on 29/10/2021.
+  
+*/
+
+// English
+
+// General
+"error.message" = "An error occured!";
+"okey" = "Okey";
+"cancel" = "Cancel";
+"retry" = "Retry";
+
+// Main Screen
+"navigation.text" = "DTT REAL ESTATE";
+"searchBar.placeholder" = "Search for a home";
+"default.location.alert.description" = "Amsterdam is set as your default location.";
+"permission.denied.alert" = "Location permission denied!";
+"API.call.error" = "Failed To get Products";
+"API.call.error.description" = "Ooops something went wrong :(";
+"emptyResultLabel.text.row1" = "No results found!";
+"emptyResultLabel.text.row2" = "Perhaps try another search?";
+
+// Detail Screen
+"homePin.title" = "Home Location";
+"descriptionHeaderLabel.text" = "Description";
+"locationLabel.text" = "Location";
+"companyNameLabel.text" = "by DTT";
+"secondHeaderLabel.text" = "Design and Development";
+"topHeaderLabel.text" = "ABOUT";

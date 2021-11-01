@@ -6,9 +6,13 @@
 //
 
 import Foundation
+import Combine
+import UIKit
 
 class NetworkService <T: NetworkTarget> {
 }
+
+var cancellable: AnyCancellable?
 
 // MARK: - Public
 extension NetworkService {
@@ -37,31 +41,6 @@ extension NetworkService {
       }.resume()
     }
   }
-  
-  /// Makes a request
-  /// - Parameters:
-  ///   - target: TargetType to be targeted
-  ///   - completion: Result with Success(Void) or Failure(NetworkError)
-  func requestPlain(target: T, completion: @escaping (Result<Void, NetworkError>) -> Void) {
-    DispatchQueue.global(qos: .userInitiated).async {
-      let request = self.prepareRequest(from: target)
-      URLSession.shared.dataTask(with: request) { (data, response, error) in
-        guard let response = response as? HTTPURLResponse else {
-          if let error = error {
-            completion(.failure(.sessionError(error)))
-          } else {
-            completion(.failure(.unknown))
-          }
-          return
-        }
-        if (200..<300).contains(response.statusCode) {
-          completion(.success(()))
-        } else {
-          completion(.failure(.unsuccessfulStatusCode(code: response.statusCode)))
-        }
-      }.resume()
-    }
-  }
 }
 
 // MARK: - Private
@@ -72,15 +51,12 @@ private extension NetworkService {
   func prepareRequest(from target: T) -> URLRequest {
     var request: URLRequest!
     let pathAppended = target.baseURL.appendingPathComponent(target.path)
-    
     switch target.workType {
     case .requestPlain:
       request = URLRequest(url: pathAppended)
-      
     case let .requestWithUrlParameters(parameters):
       let queryGeneratedURL = pathAppended.generateUrlWithQuery(with: parameters)
       request = URLRequest(url: queryGeneratedURL)
-      
     case let .requestWithBodyParameters(parameters):
       let data = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
       request = URLRequest(url: pathAppended)
@@ -88,7 +64,7 @@ private extension NetworkService {
     }
     request.httpMethod = target.methodType.rawValue
     request.addValue(target.methodType.rawValue, forHTTPHeaderField: "Content-Type")
-    request.addValue(target.accessKey , forHTTPHeaderField: "Access-Key")
+    request.addValue(target.accessKey, forHTTPHeaderField: "Access-Key")
     return request
   }
 }

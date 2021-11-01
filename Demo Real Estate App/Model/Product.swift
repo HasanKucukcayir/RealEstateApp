@@ -10,7 +10,7 @@ import Foundation
 typealias ProductList = [Product]
 
 // MARK: - Product
-struct Product:Codable {
+struct Product: Codable {
   let id: Int
   let imgURL: String
   let price: Int
@@ -23,16 +23,16 @@ struct Product:Codable {
   let latitude: Int
   let longitude: Int
   let createdDate: String
-  
+
   enum CodingKeys: String, CodingKey {
-    case id, price, bedrooms, bathrooms, size, description, zip, city,latitude, longitude, createdDate
+    case id, price, bedrooms, bathrooms, size, description, zip, city, latitude, longitude, createdDate
     case imgURL = "image"
   }
 }
 
 // MARK: - Equatable
 extension Product: Equatable {
-  
+
   static func == (lhs: Product, rhs: Product) -> Bool {
     lhs.id == rhs.id &&
     lhs.imgURL == rhs.imgURL &&

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F0C5C67272C4A8200E39735 /* Default.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F0C5C69272C4A8200E39735 /* Default.strings */; };
+		9F396D77272FFBDE0089A5DA /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 9F396D76272FFBDE0089A5DA /* .swiftlint.yml */; };
 		9F3AC5C92712FB7000AB0B33 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AC5C82712FB7000AB0B33 /* InfoView.swift */; };
 		9F3AC5CB271314E000AB0B33 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AC5CA271314E000AB0B33 /* InfoViewController.swift */; };
 		9F3AC5D127136A1B00AB0B33 /* ProductDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AC5D027136A1B00AB0B33 /* ProductDetailViewModel.swift */; };
@@ -54,11 +56,13 @@
 		9FCD23D6270A72960018B99C /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD23D5270A72960018B99C /* ColorHelper.swift */; };
 		9FCD23DA270A7D9B0018B99C /* FontHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD23D9270A7D9B0018B99C /* FontHelper.swift */; };
 		9FCD23DC270A8C7D0018B99C /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD23DB270A8C7D0018B99C /* UIView+Additions.swift */; };
-		9FED98192711C192006664D2 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED98182711C192006664D2 /* LocationService.swift */; };
 		9FF54E262712541C00A44B8B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF54E252712541C00A44B8B /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F0C5C68272C4A8200E39735 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Default.strings; sourceTree = "<group>"; };
+		9F0C5C6A272C4A8C00E39735 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Default.strings; sourceTree = "<group>"; };
+		9F396D76272FFBDE0089A5DA /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		9F3AC5C82712FB7000AB0B33 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		9F3AC5CA271314E000AB0B33 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		9F3AC5D027136A1B00AB0B33 /* ProductDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewModel.swift; sourceTree = "<group>"; };
@@ -108,7 +112,6 @@
 		9FCD23D5270A72960018B99C /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
 		9FCD23D9270A7D9B0018B99C /* FontHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontHelper.swift; sourceTree = "<group>"; };
 		9FCD23DB270A8C7D0018B99C /* UIView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
-		9FED98182711C192006664D2 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		9FF54E252712541C00A44B8B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +126,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F0C5C58272C115200E39735 /* Localizable Strings */ = {
+			isa = PBXGroup;
+			children = (
+				9F0C5C69272C4A8200E39735 /* Default.strings */,
+			);
+			path = "Localizable Strings";
+			sourceTree = "<group>";
+		};
 		9F3AC5C62712F9D100AB0B33 /* ProductDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +156,7 @@
 		9F680E022703E81900182822 = {
 			isa = PBXGroup;
 			children = (
+				9F396D76272FFBDE0089A5DA /* .swiftlint.yml */,
 				9F680E0D2703E81900182822 /* Demo Real Estate App */,
 				9F680E0C2703E81900182822 /* Products */,
 			);
@@ -200,6 +212,7 @@
 		9F680E242705063600182822 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9F0C5C58272C115200E39735 /* Localizable Strings */,
 				9F680E2927051DFE00182822 /* Fonts */,
 				9F680E172703E81E00182822 /* Assets.xcassets */,
 				9F680E252705106D00182822 /* Colors.xcassets */,
@@ -262,7 +275,6 @@
 				9FCD23BF270A42750018B99C /* NetworkService.swift */,
 				9FCD23BB2708D8C50018B99C /* NetworkTarget.swift */,
 				9FCD23BD2708FD270018B99C /* NetworkError.swift */,
-				9FED98182711C192006664D2 /* LocationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -358,6 +370,7 @@
 				9F680E072703E81900182822 /* Sources */,
 				9F680E082703E81900182822 /* Frameworks */,
 				9F680E092703E81900182822 /* Resources */,
+				9F396D73272FEDF30089A5DA /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -390,6 +403,7 @@
 			knownRegions = (
 				en,
 				Base,
+				nl,
 			);
 			mainGroup = 9F680E022703E81900182822;
 			productRefGroup = 9F680E0C2703E81900182822 /* Products */;
@@ -406,6 +420,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F396D77272FFBDE0089A5DA /* .swiftlint.yml in Resources */,
 				9F484DE22710B24900772B5D /* GothamSSm-LightItalic.otf in Resources */,
 				9F484DDA2710B24900772B5D /* GothamSSm-BoldItalic.otf in Resources */,
 				9F680E262705106D00182822 /* Colors.xcassets in Resources */,
@@ -415,6 +430,7 @@
 				9F484DDC2710B24900772B5D /* GothamSSm-Bold.otf in Resources */,
 				9F680E182703E81E00182822 /* Assets.xcassets in Resources */,
 				9F484DD92710B24900772B5D /* GothamSSm-BlackItalic.otf in Resources */,
+				9F0C5C67272C4A8200E39735 /* Default.strings in Resources */,
 				9F484DD82710B24900772B5D /* GothamSSm-Light.otf in Resources */,
 				9F484DCC2710B09500772B5D /* GothamSSm-Book.otf in Resources */,
 				9F484DDE2710B24900772B5D /* GothamSSm-MediumItalic.otf in Resources */,
@@ -424,6 +440,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9F396D73272FEDF30089A5DA /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9F680E072703E81900182822 /* Sources */ = {
@@ -455,7 +492,6 @@
 				9F77D99F270CEC3800196E95 /* Identifiable.swift in Sources */,
 				9FCD23CD270A4F350018B99C /* ProductTableViewCell.swift in Sources */,
 				9F680E112703E81900182822 /* SceneDelegate.swift in Sources */,
-				9FED98192711C192006664D2 /* LocationService.swift in Sources */,
 				9FCD23DA270A7D9B0018B99C /* FontHelper.swift in Sources */,
 				9F3AC5D127136A1B00AB0B33 /* ProductDetailViewModel.swift in Sources */,
 				9F8E1967271AE38C00E02F9E /* EmptyResultView.swift in Sources */,
@@ -469,6 +505,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9F0C5C69272C4A8200E39735 /* Default.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F0C5C68272C4A8200E39735 /* en */,
+				9F0C5C6A272C4A8C00E39735 /* nl */,
+			);
+			name = Default.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9F680E1D2703E81E00182822 /* Debug */ = {

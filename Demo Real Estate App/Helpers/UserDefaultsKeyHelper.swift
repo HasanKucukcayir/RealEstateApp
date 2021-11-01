@@ -11,9 +11,8 @@ enum UserDefaultsKeyHelper {
   // info.plist values
   static let amsterdamLatitude = "Amsterdam Latitude"
   static let amsterdamLongitude = "Amsterdam Longitude"
-  
+
   // NSUserDefaults Keys
-  static let userDefaultKeyOfCurrentLocation = "CurrentLocation"
-  
-  
+  static let userLatitude = "userLatitude"
+  static let userLongitude = "userLongitude"
 }

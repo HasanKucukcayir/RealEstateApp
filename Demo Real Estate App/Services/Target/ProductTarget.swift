@@ -15,7 +15,7 @@ enum ProductTarget {
 extension ProductTarget: NetworkTarget {
   var baseURL: URL { URL(string: Constants.baseAPIUrl)! }
   var accessKey: String { "98bww4ezuzfePCYFxJEWyszbUXc7dxRx" }
-  
+
   var path: String {
     switch self {
     case .product:
@@ -24,12 +24,11 @@ extension ProductTarget: NetworkTarget {
       return "product/\(id).json"
     }
   }
-  
+
   var methodType: MethodType { .get }
-  
+
   var contentType: ContentType { .applicationJson }
-  
+
   var workType: WorkType { .requestPlain }
-  
 
 }
