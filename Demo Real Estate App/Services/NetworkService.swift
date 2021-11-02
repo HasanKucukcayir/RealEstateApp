@@ -12,34 +12,49 @@ import UIKit
 class NetworkService <T: NetworkTarget> {
 }
 
-var cancellable: AnyCancellable?
+var observer: AnyCancellable?
 
 // MARK: - Public
 extension NetworkService {
   /// Makes a request for a Decodable Response
   /// - Parameters:
   ///   - target: TargetType to be targeted
-  ///   - completion: Result with Success(Expected Decodable Object Type) or Failure(NetworkError)
-  func request<D: Decodable>(target: T, completion: @escaping (Result<D, NetworkError>) -> Void) {
-    DispatchQueue.global(qos: .userInitiated).async {
-      let request = self.prepareRequest(from: target)
-      URLSession.shared.dataTask(with: request) { (data, response, error) in
-        guard response != nil, let data = data else {
-          if let error = error {
-            completion(.failure(.sessionError(error)))
-          } else {
-            completion(.failure(.unknown))
+  ///   - completion: Result with Success(Expected Decodable Object Type)
+  func request(target: T, completion: @escaping (Result<[Product], NetworkError>) -> Void) {
+    let request = self.prepareRequest(from: target)
+
+    observer = fetchProductsViaCombine(request: request)
+      .receive(on: DispatchQueue.main)
+      .sink(receiveCompletion: { _ in }, receiveValue: { model in
+        completion(.success(model))
+      })
+  }
+
+  func fetchProductsViaCombine(request: URLRequest) -> AnyPublisher<[Product], Error> {
+    var dataTask: URLSessionDataTask?
+
+    let onSubscription: (Subscription) -> Void = { _ in dataTask?.resume() }
+    let onCancel: () -> Void = { dataTask?.cancel() }
+
+    return Future<[Product], Error> { promise in
+      let urlRequest = request
+      dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, _, error) in
+        guard let data = data else {
+          if error != nil {
+            promise(.failure(NetworkError.unknown))
           }
           return
         }
         do {
-          let model = try JSONDecoder().decode(D.self, from: data)
-          completion(.success(model))
+          let model = try JSONDecoder().decode([Product].self, from: data)
+          promise(.success(model))
         } catch {
-          completion(.failure(.decodingError(error)))
+          promise(.failure(NetworkError.decodingError(error)))
         }
-      }.resume()
+      }
     }
+    .handleEvents(receiveSubscription: onSubscription, receiveCancel: onCancel)
+    .eraseToAnyPublisher()
   }
 }
 
