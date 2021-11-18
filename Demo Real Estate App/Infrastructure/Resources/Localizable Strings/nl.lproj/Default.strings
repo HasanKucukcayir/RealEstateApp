@@ -1,0 +1,33 @@
+/* 
+  Default.strings
+  Demo Real Estate App
+
+  Created by MacBookAir on 29/10/2021.
+  
+*/
+
+// Dutch
+
+// General
+"error.message" = "Er is een fout opgetreden!";
+"okey" = "Oke";
+"cancel" = "Annuleren";
+"retry" = "Opnieuw proberen";
+
+// Main Screen
+"navigation.text" = "DEMO ONROEREND GOED";
+"searchBar.placeholder" = "Zoek een woning";
+"default.location.alert.description" = "Amsterdam is ingesteld als uw standaardlocatie.";
+"permission.denied.alert" = "Locatietoestemming geweigerd!";
+"API.call.error" = "Kan geen huizen krijgen";
+"API.call.error.description" = "Oeps er ging iets mis :(";
+"emptyResultLabel.text.row1" = "Geen resultaten gevonden!";
+"emptyResultLabel.text.row2" = "Misschien een andere zoekopdracht proberen?";
+
+// Detail Screen
+"homePin.title" = "De Weg Vragen";
+"descriptionHeaderLabel.text" = "Beschrijving";
+"locationLabel.text" = "Plaats";
+"companyNameLabel.text" = "Downloaden op de";
+"secondHeaderLabel.text" = "Ontwerp en ontwikkeling";
+"topHeaderLabel.text" = "WAT BETREFT";
