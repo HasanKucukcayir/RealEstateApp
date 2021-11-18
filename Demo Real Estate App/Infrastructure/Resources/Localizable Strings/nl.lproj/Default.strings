@@ -15,7 +15,7 @@
 "retry" = "Opnieuw proberen";
 
 // Main Screen
-"navigation.text" = "DTT ONROEREND GOED";
+"navigation.text" = "DEMO ONROEREND GOED";
 "searchBar.placeholder" = "Zoek een woning";
 "default.location.alert.description" = "Amsterdam is ingesteld als uw standaardlocatie.";
 "permission.denied.alert" = "Locatietoestemming geweigerd!";
@@ -25,9 +25,9 @@
 "emptyResultLabel.text.row2" = "Misschien een andere zoekopdracht proberen?";
 
 // Detail Screen
-"homePin.title" = "Thuislocatie";
+"homePin.title" = "De Weg Vragen";
 "descriptionHeaderLabel.text" = "Beschrijving";
 "locationLabel.text" = "Plaats";
-"companyNameLabel.text" = "door DTT";
+"companyNameLabel.text" = "Downloaden op de";
 "secondHeaderLabel.text" = "Ontwerp en ontwikkeling";
 "topHeaderLabel.text" = "WAT BETREFT";

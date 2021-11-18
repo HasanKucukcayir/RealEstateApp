@@ -15,7 +15,7 @@
 "retry" = "Retry";
 
 // Main Screen
-"navigation.text" = "DTT REAL ESTATE";
+"navigation.text" = "DEMO REAL ESTATE";
 "searchBar.placeholder" = "Search for a home";
 "default.location.alert.description" = "Amsterdam is set as your default location.";
 "permission.denied.alert" = "Location permission denied!";
@@ -25,9 +25,9 @@
 "emptyResultLabel.text.row2" = "Perhaps try another search?";
 
 // Detail Screen
-"homePin.title" = "Home Location";
+"homePin.title" = "Get Directions";
 "descriptionHeaderLabel.text" = "Description";
 "locationLabel.text" = "Location";
-"companyNameLabel.text" = "by DTT";
+"companyNameLabel.text" = "Download on the";
 "secondHeaderLabel.text" = "Design and Development";
 "topHeaderLabel.text" = "ABOUT";

@@ -25,7 +25,14 @@ extension NetworkService {
 
     observer = fetchProductsViaCombine(request: request)
       .receive(on: DispatchQueue.main)
-      .sink(receiveCompletion: { _ in }, receiveValue: { model in
+      .sink(receiveCompletion: {completion in
+        switch completion {
+        case .failure(let error):
+          print(error)
+          return
+        case .finished:
+            return
+        } }, receiveValue: { model in
         completion(.success(model))
       })
   }
@@ -79,7 +86,6 @@ private extension NetworkService {
     }
     request.httpMethod = target.methodType.rawValue
     request.addValue(target.methodType.rawValue, forHTTPHeaderField: "Content-Type")
-    request.addValue(target.accessKey, forHTTPHeaderField: "Access-Key")
     return request
   }
 }

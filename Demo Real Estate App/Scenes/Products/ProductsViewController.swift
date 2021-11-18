@@ -45,12 +45,6 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
     locationManager?.delegate = self
     checkAuthorizationForLocation()
   }
-
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-
-  }
-
 }
 
 // MARK: - CLLocationManagerDelegate

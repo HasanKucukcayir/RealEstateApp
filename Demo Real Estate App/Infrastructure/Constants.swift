@@ -9,10 +9,10 @@ import Foundation
 
 struct Constants {
   // General
-  static let baseAPIUrl: String = "https://intern.docker-dev.d-tt.nl/api/house"
-  static let imageUrl: String = "https://intern.docker-dev.d-tt.nl/"
-  static let companyWebsiteUrl: String = "https://www.d-tt.nl"
-  static let companyWebsiteText: String = "d-tt.nl"
+  static let baseAPIUrl: String = "https://test-project-36391-default-rtdb.europe-west1.firebasedatabase.app/houseList.json"
+  static let imageUrl: String = "https://blogger.googleusercontent.com/img/a"
+  static let companyWebsiteUrl: String = "https://github.com"
+  static let companyWebsiteText: String = "GitHub"
   static let mapsAppRouteUrl: String = "http://maps.apple.com/?daddr="
   static let defaultLatitude = "52.367301"
   static let defaultLongitude = "4.899820"

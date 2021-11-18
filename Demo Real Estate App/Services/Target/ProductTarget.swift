@@ -14,7 +14,6 @@ enum ProductTarget {
 
 extension ProductTarget: NetworkTarget {
   var baseURL: URL { URL(string: Constants.baseAPIUrl)! }
-  var accessKey: String { "98bww4ezuzfePCYFxJEWyszbUXc7dxRx" }
 
   var path: String {
     switch self {

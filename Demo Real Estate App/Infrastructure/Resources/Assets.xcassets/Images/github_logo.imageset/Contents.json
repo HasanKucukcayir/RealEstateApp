@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "dtt_logo.png",
+      "filename" : "t1@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "dtt_logo@2x.png",
+      "filename" : "t1@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "dtt_logo@3x.png",
+      "filename" : "t1@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -11,7 +11,6 @@ typealias Parameters = [String: Any]
 
 protocol NetworkTarget {
   var baseURL: URL { get }
-  var accessKey: String { get }
   var path: String { get }
   var methodType: MethodType { get }
   var contentType: ContentType { get }

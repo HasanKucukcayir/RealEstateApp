@@ -16,7 +16,7 @@ enum AssetHelper {
   static let distanceImage = UIImage(named: "pin")
   static let homeImage = UIImage(named: "home")
   static let infoImage = UIImage(named: "info-button")
-  static let dttLogo = UIImage(named: "dtt_logo")
+  static let githubLogo = UIImage(named: "github_logo")
   static let emptyResultImage = UIImage(named: "undraw_empty_xct9-2")
   static let searchImage = UIImage(named: "search")
   static let closeImage = UIImage(named: "close-2")

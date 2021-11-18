@@ -97,7 +97,7 @@ private extension InfoView {
   func setupCompanyLogoImageView () {
     companyLogoImageView = UIImageView()
     companyLogoImageView.contentMode = .scaleAspectFit
-    companyLogoImageView.image = AssetHelper.dttLogo
+    companyLogoImageView.image = AssetHelper.githubLogo
   }
 
   func setupCompanyNameLabel () {

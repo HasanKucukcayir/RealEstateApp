@@ -60,6 +60,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F061E262746A65B00FFCF45 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9F0C5C68272C4A8200E39735 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Default.strings; sourceTree = "<group>"; };
 		9F0C5C6A272C4A8C00E39735 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Default.strings; sourceTree = "<group>"; };
 		9F396D76272FFBDE0089A5DA /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -156,6 +157,7 @@
 		9F680E022703E81900182822 = {
 			isa = PBXGroup;
 			children = (
+				9F061E262746A65B00FFCF45 /* README.md */,
 				9F396D76272FFBDE0089A5DA /* .swiftlint.yml */,
 				9F680E0D2703E81900182822 /* Demo Real Estate App */,
 				9F680E0C2703E81900182822 /* Products */,
@@ -656,7 +658,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dtt.Demo-Real-Estate-App";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hkucukcayir.Demo-Real-Estate-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -685,7 +687,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dtt.Demo-Real-Estate-App";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hkucukcayir.Demo-Real-Estate-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
