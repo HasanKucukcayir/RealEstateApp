@@ -9,7 +9,7 @@ import Foundation
 
 struct Constants {
   // General
-  static let baseAPIUrl: String = "https://test-project-36391-default-rtdb.europe-west1.firebasedatabase.app/houseList.json"
+  static let baseAPIUrl: String = "https://messenger-3d9c1-default-rtdb.europe-west1.firebasedatabase.app/array.json"
   static let imageUrl: String = "https://blogger.googleusercontent.com/img/a"
   static let companyWebsiteUrl: String = "https://github.com"
   static let companyWebsiteText: String = "GitHub"

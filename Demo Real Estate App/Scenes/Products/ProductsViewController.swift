@@ -41,9 +41,10 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    locationManager = CLLocationManager()
-    locationManager?.delegate = self
-    checkAuthorizationForLocation()
+//    locationManager = CLLocationManager()
+//    locationManager?.delegate = self
+//    checkAuthorizationForLocation()
+    viewModel.fetchAllProducts()
   }
 }
 
