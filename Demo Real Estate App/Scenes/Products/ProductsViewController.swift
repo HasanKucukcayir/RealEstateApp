@@ -14,6 +14,8 @@ protocol ProductsViewModelDelegate: UIViewController {
   func didFailForGettingProducts()
 }
 
+var gDataSource:[ProductTableViewCellModel] = []
+
 final class ProductsViewController: BaseViewController, ViewControllerProtocol {
   typealias ViewModelType = ProductsViewModel
   typealias ViewType = ProductsView
@@ -22,6 +24,12 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
   private let viewModel: ProductsViewModelProtocol
 
   private var items: [String] = []
+
+  var searchText: String = "Magnum" {
+    didSet {
+      self.fetchProductPrices()
+    }
+  }
 
   var locationManager: CLLocationManager?
 
@@ -47,16 +55,13 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
     //    locationManager = CLLocationManager()
     //    locationManager?.delegate = self
     //    checkAuthorizationForLocation()
-    viewModel.fetchAllProducts()
+    //    viewModel.fetchAllProducts()
 
-    fetchMagnumPrice()
+    fetchProductPrices()
   }
 
-  func fetchMagnumPrice() {
-//    let urlString = "https://www.ah.nl/zoeken?query=Magnum%20mini"
-//    let urlString = "https://www.ah.nl/zoeken?query=robijn"
-//  let urlString = "https://www.ah.nl/zoeken?query=walra"
-    let urlString = "https://www.ah.nl/zoeken?query=zwitsal"
+  func fetchProductPrices() {
+    let urlString = "https://www.ah.nl/zoeken?query=\(searchText)"
 
 
     guard let url = URL(string: urlString) else { return }
@@ -68,44 +73,30 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
 
         let document = try SwiftSoup.parse(html)
         // Select the script tag containing the window.__INITIAL_STATE__
-            let scriptTags = try document.select("script")
+        let scriptTags = try document.select("script")
 
-            // Iterate over script tags to find the one containing __INITIAL_STATE__
-            for script in scriptTags {
-                let scriptContent = try script.html()
+        // Iterate over script tags to find the one containing __INITIAL_STATE__
+        for script in scriptTags {
+          let scriptContent = try script.html()
 
-                // Check if the script contains the __INITIAL_STATE__ variable
-                if scriptContent.contains("window.__INITIAL_STATE") {
+          // Check if the script contains the __INITIAL_STATE__ variable
+          if scriptContent.contains("window.__INITIAL_STATE") {
 
-                  let pattern = #"window\.__INITIAL_STATE__\s*=\s*(\{.*?\})\s*window\.__APOLLO_STATE__"#
-                             if let regex = try? NSRegularExpression(pattern: pattern, options: []),
-                                let match = regex.firstMatch(in: scriptContent, options: [], range: NSRange(location: 0, length: scriptContent.utf16.count)) {
-                                 if let range = Range(match.range(at: 1), in: scriptContent) {
-                                     let jsonString = String(scriptContent[range])
-                                   let converted = self.convertUndefinedToNull(in: jsonString)
-                                   guard let decodedString = self.replaceUnicodeCharacters(in: converted) else {
-                                     break
-                                   }
-                                   self.parseJson(jsonString: decodedString)
-                                   break
-                                 }
-                             }
-//                    // Extract the JSON string
-//                    if let range = scriptContent.range(of: "window.__INITIAL_STATE__=") {
-//                        let jsonString = String(scriptContent[range.upperBound...])
-//
-//                        // Remove the trailing semicolon
-//                        let cleanedJsonString = jsonString.trimmingCharacters(in: .whitespacesAndNewlines).dropLast()
-//
-//                      let converted = self.convertUndefinedToNull(in: String(cleanedJsonString))
-//
-//                        // Print the extracted JSON
-//                        print(converted)
-//
-//                      self.parseJson(jsonString: converted)
-//                    }
+            let pattern = #"window\.__INITIAL_STATE__\s*=\s*(\{.*?\})\s*window\.__APOLLO_STATE__"#
+            if let regex = try? NSRegularExpression(pattern: pattern, options: []),
+               let match = regex.firstMatch(in: scriptContent, options: [], range: NSRange(location: 0, length: scriptContent.utf16.count)) {
+              if let range = Range(match.range(at: 1), in: scriptContent) {
+                let jsonString = String(scriptContent[range])
+                let converted = self.convertUndefinedToNull(in: jsonString)
+                guard let decodedString = self.replaceUnicodeCharacters(in: converted) else {
+                  break
                 }
+                self.parseJson(jsonString: decodedString)
+                break
+              }
             }
+          }
+        }
       } catch {
         print("Error: \(error)")
       }
@@ -114,45 +105,87 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
   }
 
   func replaceUnicodeCharacters(in jsonString: String) -> String? {
-      guard let data = jsonString.data(using: .utf8) else { return nil }
-      do {
-          // Decode the JSON data
+    guard let data = jsonString.data(using: .utf8) else { return nil }
+    do {
+      // Decode the JSON data
 
-        guard let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
-          return nil
-        }
-
-          // Convert the dictionary back to JSON data
-          let jsonData = try JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
-
-          // Convert JSON data to string
-          var jsonString = String(data: jsonData, encoding: .utf8)
-
-          // Replace unicode characters
-          jsonString = jsonString?.replacingOccurrences(of: "\\u", with: "\\\\u")
-
-          return jsonString
-      } catch {
-          print("Error: \(error)")
-          return nil
+      guard let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+        return nil
       }
+
+      // Convert the dictionary back to JSON data
+      let jsonData = try JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
+
+      // Convert JSON data to string
+      var jsonString = String(data: jsonData, encoding: .utf8)
+
+      // Replace unicode characters
+      jsonString = jsonString?.replacingOccurrences(of: "\\u", with: "\\\\u")
+
+      return jsonString
+    } catch {
+      print("Error: \(error)")
+      return nil
+    }
   }
 
-
   func parseJson(jsonString: String) {
-
     let jsonData = Data(jsonString.utf8)
-      let aHListModel = try? JSONDecoder().decode(AHListModel.self, from: jsonData)
-    print(aHListModel?.search?.results?.first?.products?.first?.brand)
+    guard let aHListModel = try? JSONDecoder().decode(AHListModel.self, from: jsonData) else { return }
+    mapDataSource(with: aHListModel)
+  }
+
+  func mapDataSource(with model: AHListModel) {
+
+    guard let results = model.search?.results else {
+      return
+    }
+
+    gDataSource.removeAll()
+    for result in results {
+
+      guard let products = result.products else {
+        continue
+      }
+
+      for product in products {
+        let imageUrl = product.images?.first?.url.flatMap { URL(string: $0) }
+        let price = product.price?.now.flatMap { String(format: "€%.2f", $0) }
+        let address = product.link // Assuming address is stored in link
+        let numberOfBedroom = "N/A" // Replace with actual property if available in product
+        let numberOfBathroom = "N/A" // Replace with actual property if available in product
+        let size = "N/A" // Replace with actual property if available in product
+        let distance = "N/A" // Replace with actual property if available in product
+
+        let cellModel = ProductTableViewCellModel(
+          imageUrl: imageUrl,
+          price: price,
+          address: address,
+          numberOfBedroom: numberOfBedroom,
+          numberOfBathroom: numberOfBathroom,
+          size: size,
+          distance: distance
+        )
+
+        gDataSource.append(cellModel)
+      }
+    }
+
+    DispatchQueue.main.async {
+      self.mainView.provideDataSource(gDataSource)
+    }
+
   }
 
   func convertUndefinedToNull(in jsonString: String) -> String {
-      // Replace all instances of `undefined` with `null`
-      let convertedString = jsonString.replacingOccurrences(of: "undefined", with: "null")
-      return convertedString
+    // Replace all instances of `undefined` with `null`
+    let convertedString = jsonString.replacingOccurrences(of: "undefined", with: "null")
+    return convertedString
   }
-
 }
+
+
+
 
 // MARK: - CLLocationManagerDelegate
 extension ProductsViewController: CLLocationManagerDelegate {
@@ -219,7 +252,8 @@ extension ProductsViewController: ProductsViewDelegate {
   }
 
   func searchBarSearchButtonClicked(_ text: String?) {
-    mainView.provideDataSource(viewModel.filterProduct(with: text))
+//    mainView.provideDataSource(viewModel.filterProduct(with: text))
+    searchText = text ?? ""
   }
 
   func searchBarCancelButtonClicked() {

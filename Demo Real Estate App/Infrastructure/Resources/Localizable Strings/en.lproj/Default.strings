@@ -15,8 +15,8 @@
 "retry" = "Retry";
 
 // Main Screen
-"navigation.text" = "DEMO REAL ESTATE";
-"searchBar.placeholder" = "Search for a home";
+"navigation.text" = "DEMO PRICE COMPARISON APP";
+"searchBar.placeholder" = "Search for a product";
 "default.location.alert.description" = "Amsterdam is set as your default location.";
 "permission.denied.alert" = "Location permission denied!";
 "API.call.error" = "Failed To get Products";

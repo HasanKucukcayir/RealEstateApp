@@ -46,9 +46,9 @@
             filePath = "Demo Real Estate App/Scenes/Products/ProductsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "fetchMagnumPrice()"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "fetchProductPrices()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -87,38 +87,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AE7BA0B1-1391-43C5-B202-856E7F26D8B3"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Demo Real Estate App/Scenes/Products/ProductsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "fetchMagnumPrice()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B17082F7-6879-49C5-8737-E29D34B04FC9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Demo Real Estate App/Scenes/Products/ProductsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "fetchMagnumPrice()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "0D5EDADA-5D3B-4C74-B9A4-B7CD0B889AB0"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -126,8 +94,8 @@
             filePath = "Demo Real Estate App/Scenes/Products/ProductsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "parseJson(jsonString:)"
             landmarkType = "7">
             <Locations>
