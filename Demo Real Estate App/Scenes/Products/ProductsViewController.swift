@@ -54,22 +54,98 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
 
   func fetchMagnumPrice() {
     let urlString = "https://www.ah.nl/zoeken?query=Magnum%20mini"
+
     guard let url = URL(string: urlString) else { return }
 
     let task = URLSession.shared.dataTask(with: url) { data, response, error in
       guard let data = data, error == nil else { return }
       do {
         let html = String(data: data, encoding: .utf8)!
+
         let document = try SwiftSoup.parse(html)
-        if let scriptTag = try document.select("script[type=application/ld+json]").first() {
-          let jsonContent = try scriptTag.html()
-          print(jsonContent ?? "No application/ld+json script found")
-        }
+        // Select the script tag containing the window.__INITIAL_STATE__
+            let scriptTags = try document.select("script")
+
+            // Iterate over script tags to find the one containing __INITIAL_STATE__
+            for script in scriptTags {
+                let scriptContent = try script.html()
+
+                // Check if the script contains the __INITIAL_STATE__ variable
+                if scriptContent.contains("window.__INITIAL_STATE") {
+
+                  let pattern = #"window\.__INITIAL_STATE__\s*=\s*(\{.*?\})\s*window\.__APOLLO_STATE__"#
+                             if let regex = try? NSRegularExpression(pattern: pattern, options: []),
+                                let match = regex.firstMatch(in: scriptContent, options: [], range: NSRange(location: 0, length: scriptContent.utf16.count)) {
+                                 if let range = Range(match.range(at: 1), in: scriptContent) {
+                                     let jsonString = String(scriptContent[range])
+                                   let converted = self.convertUndefinedToNull(in: jsonString)
+                                   guard let decodedString = self.replaceUnicodeCharacters(in: converted) else {
+                                     break
+                                   }
+                                   self.parseJson(jsonString: decodedString)
+                                   break
+                                 }
+                             }
+//                    // Extract the JSON string
+//                    if let range = scriptContent.range(of: "window.__INITIAL_STATE__=") {
+//                        let jsonString = String(scriptContent[range.upperBound...])
+//
+//                        // Remove the trailing semicolon
+//                        let cleanedJsonString = jsonString.trimmingCharacters(in: .whitespacesAndNewlines).dropLast()
+//
+//                      let converted = self.convertUndefinedToNull(in: String(cleanedJsonString))
+//
+//                        // Print the extracted JSON
+//                        print(converted)
+//
+//                      self.parseJson(jsonString: converted)
+//                    }
+                }
+            }
       } catch {
         print("Error: \(error)")
       }
     }
     task.resume()
+  }
+
+  func replaceUnicodeCharacters(in jsonString: String) -> String? {
+      guard let data = jsonString.data(using: .utf8) else { return nil }
+      do {
+          // Decode the JSON data
+
+        guard let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+          return nil
+        }
+
+          // Convert the dictionary back to JSON data
+          let jsonData = try JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
+
+          // Convert JSON data to string
+          var jsonString = String(data: jsonData, encoding: .utf8)
+
+          // Replace unicode characters
+          jsonString = jsonString?.replacingOccurrences(of: "\\u", with: "\\\\u")
+
+          return jsonString
+      } catch {
+          print("Error: \(error)")
+          return nil
+      }
+  }
+
+
+  func parseJson(jsonString: String) {
+
+    let jsonData = Data(jsonString.utf8)
+      let aHListModel = try? JSONDecoder().decode(AHListModel.self, from: jsonData)
+    print(aHListModel?.search?.results?.first?.products?.first?.brand)
+  }
+
+  func convertUndefinedToNull(in jsonString: String) -> String {
+      // Replace all instances of `undefined` with `null`
+      let convertedString = jsonString.replacingOccurrences(of: "undefined", with: "null")
+      return convertedString
   }
 
 }

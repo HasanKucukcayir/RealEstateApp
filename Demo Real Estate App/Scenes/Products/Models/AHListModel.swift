@@ -7,36 +7,36 @@ import Foundation
 
 // MARK: - AHListModel
 struct AHListModel: Codable {
+    let taxonomy: AHListModelTaxonomy?
+    let fakedoor: Fakedoor?
+    let productRecommendations: ProductRecommendations?
+    let recipe: Recipe?
+    let router: AHListModelRouter?
+    let search: Search?
+    let uiState: UIState?
+    let content: Content?
     let common: Common?
     let alternatives: AHListModelAlternatives?
     let analytics: Analytics?
-    let autocompleteProducts: AutocompleteProducts?
-    let content: Content?
     let crossSells: CrossSells?
-    let fakedoor: Fakedoor?
-    let product: AHListModelProduct?
-    let productRecommendations: ProductRecommendations?
-    let recipe: Recipe?
-    let search: Search?
     let superShops: SuperShops?
-    let taxonomy: AHListModelTaxonomy?
-    let uiState: UIState?
-    let router: AHListModelRouter?
+    let product: AHListModelProduct?
     let locale: String?
+    let autocompleteProducts: AutocompleteProducts?
 }
 
 // MARK: - AHListModelAlternatives
 struct AHListModelAlternatives: Codable {
-    let state: String?
     let alternatives: [JSONAny]?
-    let productID: Int?
+    let state: String?
     let dataLakeModel: DataLakeModel?
+    let productID: Int?
     let data: [JSONAny]?
 
     enum CodingKeys: String, CodingKey {
-        case state, alternatives
+        case alternatives, state, dataLakeModel
         case productID = "productId"
-        case dataLakeModel, data
+        case data
     }
 }
 
@@ -53,31 +53,30 @@ struct Analytics: Codable {
 
 // MARK: - AutocompleteProducts
 struct AutocompleteProducts: Codable {
-    let suggestions: [JSONAny]?
     let state: String?
     let timestamp: Int?
+    let suggestions: [JSONAny]?
 }
 
 // MARK: - Common
 struct Common: Codable {
-    let ui: UI?
-    let alternatives: AHListModelAlternatives?
     let basket: Basket?
     let member: Member?
-    let notifications: Notifications?
     let globalSearch: GlobalSearch?
     let customHeaders: CustomHeaders?
+    let ui: UI?
     let server: Server?
     let productCard: ProductCard?
     let router: CommonRouter?
+    let alternatives: AHListModelAlternatives?
+    let notifications: Notifications?
 }
 
 // MARK: - Basket
 struct Basket: Codable {
-    let products: [JSONAny]?
-    let state: String?
     let summary: Summary?
-    let list: [JSONAny]?
+    let state: String?
+    let list, products: [JSONAny]?
 }
 
 // MARK: - Summary
@@ -91,8 +90,8 @@ struct CustomHeaders: Codable {
 
 // MARK: - GlobalSearch
 struct GlobalSearch: Codable {
-    let suggestions: [JSONAny]?
     let state: String?
+    let suggestions: [JSONAny]?
 }
 
 // MARK: - Member
@@ -142,37 +141,37 @@ struct Server: Codable {
 
 // MARK: - UI
 struct UI: Codable {
+    let viewport: Viewport?
     let alternativesPanel: AlternativesPanel?
     let navigation: Navigation?
-    let viewport: Viewport?
 }
 
 // MARK: - AlternativesPanel
 struct AlternativesPanel: Codable {
-    let isOpen, isLoading: Bool?
+    let isLoading, isOpen: Bool?
 }
 
 // MARK: - Navigation
 struct Navigation: Codable {
-    let personalMenuOpen, mainMenuOpen, searchIsOpen: Bool?
+    let searchIsOpen, mainMenuOpen, personalMenuOpen: Bool?
 }
 
 // MARK: - Viewport
 struct Viewport: Codable {
-    let mobileWebView, phone, tablet, desktop: Bool?
+    let tablet, phone, desktop, mobileWebView: Bool?
 }
 
 // MARK: - Content
 struct Content: Codable {
-    let state: String?
-    let pages: Pages?
     let partials: Partials?
+    let pages: Pages?
+    let state: String?
     let contentJSON: JSON?
     let preview: Bool?
     let documents: CustomHeaders?
 
     enum CodingKeys: String, CodingKey {
-        case state, pages, partials
+        case partials, pages, state
         case contentJSON = "json"
         case preview, documents
     }
@@ -187,9 +186,9 @@ struct JSON: Codable {
 
 // MARK: - Pages
 struct Pages: Codable {
+    let components, data: CustomHeaders?
     let current: JSONNull?
     let state: String?
-    let data, components: CustomHeaders?
     let error: JSONNull?
 }
 
@@ -202,13 +201,12 @@ struct Partials: Codable {
 // MARK: - CrossSells
 struct CrossSells: Codable {
     let count: Int?
-    let productID: JSONNull?
     let fetchProducts: Bool?
+    let productID: JSONNull?
 
     enum CodingKeys: String, CodingKey {
-        case count
+        case count, fetchProducts
         case productID = "productId"
-        case fetchProducts
     }
 }
 
@@ -227,12 +225,12 @@ struct Fakedoor: Codable {
 
 // MARK: - Popup
 struct Popup: Codable {
+    let freeProduct, card: JSONNull?
     let popupOpen: Bool?
-    let card, freeProduct: JSONNull?
 
     enum CodingKeys: String, CodingKey {
+        case freeProduct, card
         case popupOpen = "open"
-        case card, freeProduct
     }
 }
 
@@ -249,8 +247,9 @@ struct AHListModelProduct: Codable {
 
 // MARK: - ProductRecommendations
 struct ProductRecommendations: Codable {
+    let productService: ProductService?
     let dataLake: DataLake?
-    let productService, similarProducts: ProductService?
+    let similarProducts: ProductService?
 }
 
 // MARK: - DataLake
@@ -281,10 +280,10 @@ struct AHListModelRouter: Codable {
 
 // MARK: - FluffyLocation
 struct FluffyLocation: Codable {
-    let pathname, search, hash: String?
-    let state: JSONNull?
-    let key: String?
     let query: Query?
+    let search, hash: String?
+    let state: JSONNull?
+    let key, pathname: String?
 }
 
 // MARK: - Query
@@ -294,13 +293,14 @@ struct Query: Codable {
 
 // MARK: - Search
 struct Search: Codable {
-    let state, currentQuery: String?
-    let timestamp: Int?
-    let results: [Result]?
-    let filters: SearchFilters?
-    let page: Page?
-    let taxonomies, querySuggestions: [JSONAny]?
     let suggestions: JSONNull?
+    let filters: SearchFilters?
+    let currentQuery: String?
+    let results: [SearchResult]?
+    let taxonomies, querySuggestions: [JSONAny]?
+    let timestamp: Int?
+    let state: String?
+    let page: Page?
 }
 
 // MARK: - SearchFilters
@@ -312,9 +312,9 @@ struct SearchFilters: Codable {
 
 // MARK: - Brand
 struct Brand: Codable {
-    let name: BrandEnum?
-    let count: Int?
     let id, label: String?
+    let count: Int?
+    let name: String?
     let attributes: Attributes?
 }
 
@@ -335,35 +335,34 @@ enum BrandEnum: String, Codable {
 
 // MARK: - PriceElement
 struct PriceElement: Codable {
-    let count: Int?
-    let min, max: Double?
+    let min: Double?
     let label: String?
+    let count: Int?
+    let max: Double?
 }
 
 // MARK: - FiltersTaxonomy
 struct FiltersTaxonomy: Codable {
-    let count, id: Int?
-    let shown: Bool?
-    let level: Int?
     let parentIDS: [Int]?
-    let rank: Int?
+    let shown: Bool?
+    let id: Int?
     let relevant: Bool?
+    let count, level, rank: Int?
     let label: String?
 
     enum CodingKeys: String, CodingKey {
-        case count, id, shown, level
         case parentIDS = "parentIds"
-        case rank, relevant, label
+        case shown, id, relevant, count, level, rank, label
     }
 }
 
 // MARK: - Page
 struct Page: Codable {
-    let size, totalElements, totalPages, number: Int?
+    let size, totalPages, number, totalElements: Int?
 }
 
-// MARK: - Result
-struct Result: Codable {
+// MARK: - SearchResult
+struct SearchResult: Codable {
     let type: TypeEnum?
     let id: Int?
     let products: [ProductElement]?
@@ -371,35 +370,37 @@ struct Result: Codable {
 
 // MARK: - ProductElement
 struct ProductElement: Codable {
-    let id: Int?
-    let control: Control?
     let title, link: String?
-    let availableOnline, orderable: Bool?
-    let propertyIcons: [PropertyIcon]?
-    let images: [Image]?
-    let shield: Shield?
-    let price: ProductPrice?
-    let discount: Discount?
-    let itemCatalogID: Int?
-    let brand: BrandEnum?
-    let category: Category?
-    let theme: PriceTheme?
-    let hqID: Int?
     let gtins: [Int]?
-    let summary, descriptionFull: String?
+    let summary: String?
+    let brand: String?
+    let availableOnline: Bool?
+    let images: [Image]?
+    let propertyIcons: [PropertyIcon]?
+    let discount: Discount?
+    let category: Category?
+    let hqID: Int?
+    let descriptionFull: String?
     let taxonomyID: Int?
     let taxonomies: [ProductTaxonomy]?
+    let id: Int?
+    let control: Control?
     let properties: Properties?
+    let shield: Shield?
+    let itemCatalogID: Int?
+    let theme: PriceTheme?
+    let price: ProductPrice?
+    let orderable: Bool?
     let contributionMargin: Int?
 
     enum CodingKeys: String, CodingKey {
-        case id, control, title, link, availableOnline, orderable, propertyIcons, images, shield, price, discount
-        case itemCatalogID = "itemCatalogId"
-        case brand, category, theme
+        case title, link, gtins, summary, brand, availableOnline, images, propertyIcons, discount, category
         case hqID = "hqId"
-        case gtins, summary, descriptionFull
+        case descriptionFull
         case taxonomyID = "taxonomyId"
-        case taxonomies, properties, contributionMargin
+        case taxonomies, id, control, properties, shield
+        case itemCatalogID = "itemCatalogId"
+        case theme, price, orderable, contributionMargin
     }
 }
 
@@ -423,10 +424,11 @@ enum TypeEnum: String, Codable {
 
 // MARK: - Discount
 struct Discount: Codable {
-    let bonusType, segmentType: BonusTypeEnum?
-    let promotionType: PromotionType?
+    let bonusType: BonusTypeEnum?
+    let endDate, startDate: String?
     let theme: ControlTheme?
-    let startDate, endDate: String?
+    let segmentType: BonusTypeEnum?
+    let promotionType: PromotionType?
     let tieredOffer: [JSONAny]?
 }
 
@@ -440,10 +442,10 @@ enum PromotionType: String, Codable {
 
 // MARK: - Image
 struct Image: Codable {
-    let height, width: Int?
-    let title: String?
-    let url: String?
     let ratio: Ratio?
+    let title: String?
+    let height, width: Int?
+    let url: String?
 }
 
 enum Ratio: String, Codable {
@@ -495,17 +497,17 @@ enum Text: String, Codable {
 
 // MARK: - ProductTaxonomy
 struct ProductTaxonomy: Codable {
-    let id: Int?
-    let name: TaxonomyName?
-    let imageSiteTarget: ImageSiteTarget?
     let images: [JSONAny]?
-    let shown: Bool?
-    let level, sortSequence: Int?
     let parentIDS: [Int]?
+    let shown: Bool?
+    let id, sortSequence, level: Int?
+    let imageSiteTarget: ImageSiteTarget?
+    let name: TaxonomyName?
 
     enum CodingKeys: String, CodingKey {
-        case id, name, imageSiteTarget, images, shown, level, sortSequence
+        case images
         case parentIDS = "parentIds"
+        case shown, id, sortSequence, level, imageSiteTarget, name
     }
 }
 
@@ -527,8 +529,9 @@ struct SuperShops: Codable {
 
 // MARK: - AHListModelTaxonomy
 struct AHListModelTaxonomy: Codable {
+    let topLevel, brandTaxonomies: [JSONAny]?
     let state: String?
-    let topLevel, brandTaxonomies, taxonomies, invalidTaxonomies: [JSONAny]?
+    let taxonomies, invalidTaxonomies: [JSONAny]?
 }
 
 // MARK: - UIState
@@ -539,19 +542,20 @@ struct UIState: Codable {
 
 // MARK: - UIStateAlternatives
 struct UIStateAlternatives: Codable {
-    let isOpen: Bool?
     let type, productID: Int?
+    let isOpen: Bool?
 
     enum CodingKeys: String, CodingKey {
-        case isOpen, type
+        case type
         case productID = "productId"
+        case isOpen
     }
 }
 
 // MARK: - UIStateFilters
 struct UIStateFilters: Codable {
-    let isOpen: Bool?
     let selectedFilter: JSONNull?
+    let isOpen: Bool?
 }
 
 // MARK: - Encode/decode helpers
