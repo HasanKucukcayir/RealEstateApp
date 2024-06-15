@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import SwiftSoup
 
 protocol ProductsViewModelDelegate: UIViewController {
   func didGetProducts(dataSource: [ProductTableViewCellModel])
@@ -19,6 +20,8 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
 
   private let mainView: ProductsView
   private let viewModel: ProductsViewModelProtocol
+
+  private var items: [String] = []
 
   var locationManager: CLLocationManager?
 
@@ -41,21 +44,44 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-//    locationManager = CLLocationManager()
-//    locationManager?.delegate = self
-//    checkAuthorizationForLocation()
+    //    locationManager = CLLocationManager()
+    //    locationManager?.delegate = self
+    //    checkAuthorizationForLocation()
     viewModel.fetchAllProducts()
+
+    fetchMagnumPrice()
   }
+
+  func fetchMagnumPrice() {
+    let urlString = "https://www.ah.nl/zoeken?query=Magnum%20mini"
+    guard let url = URL(string: urlString) else { return }
+
+    let task = URLSession.shared.dataTask(with: url) { data, response, error in
+      guard let data = data, error == nil else { return }
+      do {
+        let html = String(data: data, encoding: .utf8)!
+        let document = try SwiftSoup.parse(html)
+        if let scriptTag = try document.select("script[type=application/ld+json]").first() {
+          let jsonContent = try scriptTag.html()
+          print(jsonContent ?? "No application/ld+json script found")
+        }
+      } catch {
+        print("Error: \(error)")
+      }
+    }
+    task.resume()
+  }
+
 }
 
 // MARK: - CLLocationManagerDelegate
 extension ProductsViewController: CLLocationManagerDelegate {
 
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-      if let location = locations.first {
-        setUserCurrentLocationCoordinates(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude))
-        viewModel.fetchAllProducts()
-      }
+    if let location = locations.first {
+      setUserCurrentLocationCoordinates(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude))
+      viewModel.fetchAllProducts()
+    }
   }
 
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

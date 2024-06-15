@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F03667A2C12CD1E007AC807 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0366792C12CD1E007AC807 /* SwiftSoup */; };
+		9F03667C2C1D39F6007AC807 /* AHListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F03667B2C1D39F6007AC807 /* AHListModel.swift */; };
 		9F0C5C67272C4A8200E39735 /* Default.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F0C5C69272C4A8200E39735 /* Default.strings */; };
 		9F396D77272FFBDE0089A5DA /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 9F396D76272FFBDE0089A5DA /* .swiftlint.yml */; };
 		9F3AC5C92712FB7000AB0B33 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AC5C82712FB7000AB0B33 /* InfoView.swift */; };
@@ -60,6 +62,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F03667B2C1D39F6007AC807 /* AHListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AHListModel.swift; sourceTree = "<group>"; };
 		9F061E262746A65B00FFCF45 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9F0C5C68272C4A8200E39735 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Default.strings; sourceTree = "<group>"; };
 		9F0C5C6A272C4A8C00E39735 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Default.strings; sourceTree = "<group>"; };
@@ -121,12 +124,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F03667A2C12CD1E007AC807 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F03667D2C1D3A01007AC807 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9F03667B2C1D39F6007AC807 /* AHListModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		9F0C5C58272C115200E39735 /* Localizable Strings */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,6 +339,7 @@
 		9FCD23C9270A4EE30018B99C /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				9F03667D2C1D3A01007AC807 /* Models */,
 				9FCD23CA270A4EF00018B99C /* View */,
 				9F77D999270CE31E00196E95 /* ProductsViewModel.swift */,
 				9F77D99B270CE34900196E95 /* ProductsViewController.swift */,
@@ -379,6 +392,9 @@
 			dependencies = (
 			);
 			name = "Demo Real Estate App";
+			packageProductDependencies = (
+				9F0366792C12CD1E007AC807 /* SwiftSoup */,
+			);
 			productName = "Demo Real Estate App";
 			productReference = 9F680E0B2703E81900182822 /* Demo Real Estate App.app */;
 			productType = "com.apple.product-type.application";
@@ -408,6 +424,9 @@
 				nl,
 			);
 			mainGroup = 9F680E022703E81900182822;
+			packageReferences = (
+				9F0366782C12CD1E007AC807 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 9F680E0C2703E81900182822 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -486,6 +505,7 @@
 				9F8E196B271CDDC200E02F9E /* AppUtilities.swift in Sources */,
 				9FCD23C0270A42750018B99C /* NetworkService.swift in Sources */,
 				9FBD360D271D7C4700F952F5 /* HomeAnnotationView.swift in Sources */,
+				9F03667C2C1D39F6007AC807 /* AHListModel.swift in Sources */,
 				9F680E4427052D1500182822 /* BaseView.swift in Sources */,
 				9F77D99A270CE31E00196E95 /* ProductsViewModel.swift in Sources */,
 				9F680E4627052E0800182822 /* BaseViewController.swift in Sources */,
@@ -717,6 +737,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9F0366782C12CD1E007AC807 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9F0366792C12CD1E007AC807 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F0366782C12CD1E007AC807 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9F680E032703E81900182822 /* Project object */;
 }
