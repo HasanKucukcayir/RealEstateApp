@@ -53,7 +53,11 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
   }
 
   func fetchMagnumPrice() {
-    let urlString = "https://www.ah.nl/zoeken?query=Magnum%20mini"
+//    let urlString = "https://www.ah.nl/zoeken?query=Magnum%20mini"
+//    let urlString = "https://www.ah.nl/zoeken?query=robijn"
+//  let urlString = "https://www.ah.nl/zoeken?query=walra"
+    let urlString = "https://www.ah.nl/zoeken?query=zwitsal"
+
 
     guard let url = URL(string: urlString) else { return }
 

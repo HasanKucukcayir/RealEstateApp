@@ -7,22 +7,22 @@ import Foundation
 
 // MARK: - AHListModel
 struct AHListModel: Codable {
-    let taxonomy: AHListModelTaxonomy?
-    let fakedoor: Fakedoor?
-    let productRecommendations: ProductRecommendations?
-    let recipe: Recipe?
-    let router: AHListModelRouter?
+//    let taxonomy: AHListModelTaxonomy?
+//    let fakedoor: Fakedoor?
+//    let productRecommendations: ProductRecommendations?
+//    let recipe: Recipe?
+//    let router: AHListModelRouter?
     let search: Search?
-    let uiState: UIState?
-    let content: Content?
-    let common: Common?
-    let alternatives: AHListModelAlternatives?
-    let analytics: Analytics?
-    let crossSells: CrossSells?
-    let superShops: SuperShops?
-    let product: AHListModelProduct?
+//    let uiState: UIState?
+//    let content: Content?
+//    let common: Common?
+//    let alternatives: AHListModelAlternatives?
+//    let analytics: Analytics?
+//    let crossSells: CrossSells?
+//    let superShops: SuperShops?
+//    let product: AHListModelProduct?
     let locale: String?
-    let autocompleteProducts: AutocompleteProducts?
+//    let autocompleteProducts: AutocompleteProducts?
 }
 
 // MARK: - AHListModelAlternatives
@@ -293,14 +293,14 @@ struct Query: Codable {
 
 // MARK: - Search
 struct Search: Codable {
-    let suggestions: JSONNull?
-    let filters: SearchFilters?
-    let currentQuery: String?
+//    let suggestions: JSONNull?
+//    let filters: SearchFilters?
+//    let currentQuery: String?
     let results: [SearchResult]?
-    let taxonomies, querySuggestions: [JSONAny]?
-    let timestamp: Int?
-    let state: String?
-    let page: Page?
+//    let taxonomies, querySuggestions: [JSONAny]?
+//    let timestamp: Int?
+//    let state: String?
+//    let page: Page?
 }
 
 // MARK: - SearchFilters
@@ -320,18 +320,14 @@ struct Brand: Codable {
 
 // MARK: - Attributes
 struct Attributes: Codable {
-    let icon: Icon?
+    let icon: String?
 }
 
-enum Icon: String, Codable {
-    case diepvries = "diepvries"
-    case vega = "vega"
-    case veganColor = "vegan-color"
-}
-
-enum BrandEnum: String, Codable {
-    case magnum = "Magnum"
-}
+//enum Icon: String, Codable {
+//    case diepvries = "diepvries"
+//    case vega = "vega"
+//    case veganColor = "vegan-color"
+//}
 
 // MARK: - PriceElement
 struct PriceElement: Codable {
@@ -357,13 +353,13 @@ struct FiltersTaxonomy: Codable {
 }
 
 // MARK: - Page
-struct Page: Codable {
-    let size, totalPages, number, totalElements: Int?
-}
+//struct Page: Codable {
+//    let size, totalPages, number, totalElements: Int?
+//}
 
 // MARK: - SearchResult
 struct SearchResult: Codable {
-    let type: TypeEnum?
+    let type: String?
     let id: Int?
     let products: [ProductElement]?
 }
@@ -378,7 +374,7 @@ struct ProductElement: Codable {
     let images: [Image]?
     let propertyIcons: [PropertyIcon]?
     let discount: Discount?
-    let category: Category?
+    let category: String?
     let hqID: Int?
     let descriptionFull: String?
     let taxonomyID: Int?
@@ -388,7 +384,7 @@ struct ProductElement: Codable {
     let properties: Properties?
     let shield: Shield?
     let itemCatalogID: Int?
-    let theme: PriceTheme?
+    let theme: String?
     let price: ProductPrice?
     let orderable: Bool?
     let contributionMargin: Int?
@@ -404,69 +400,69 @@ struct ProductElement: Codable {
     }
 }
 
-enum Category: String, Codable {
-    case diepvriesRoomHandijs = "Diepvries/Room handijs"
-}
+//enum Category: String, Codable {
+//    case diepvriesRoomHandijs = "Diepvries/Room handijs"
+//}
 
 // MARK: - Control
 struct Control: Codable {
-    let theme: ControlTheme?
-    let type: TypeEnum?
+    let theme: String?
+    let type: String?
 }
 
-enum ControlTheme: String, Codable {
-    case bonus = "bonus"
-}
+//enum ControlTheme: String, Codable {
+//    case bonus = "bonus"
+//}
 
-enum TypeEnum: String, Codable {
-    case typeDefault = "default"
-}
+//enum TypeEnum: String, Codable {
+//    case typeDefault = "default"
+//}
 
 // MARK: - Discount
 struct Discount: Codable {
-    let bonusType: BonusTypeEnum?
+//    let bonusType: String?
     let endDate, startDate: String?
-    let theme: ControlTheme?
-    let segmentType: BonusTypeEnum?
-    let promotionType: PromotionType?
+    let theme: String?
+    let segmentType: String?
+//    let promotionType: String?
     let tieredOffer: [JSONAny]?
 }
 
-enum BonusTypeEnum: String, Codable {
-    case ah = "AH"
-}
+//enum BonusTypeEnum: String, Codable {
+//    case ah = "AH"
+//}
 
-enum PromotionType: String, Codable {
-    case national = "NATIONAL"
-}
+//enum PromotionType: String, Codable {
+//    case national = "NATIONAL"
+//}
 
 // MARK: - Image
 struct Image: Codable {
-    let ratio: Ratio?
+    let ratio: String?
     let title: String?
     let height, width: Int?
     let url: String?
 }
 
-enum Ratio: String, Codable {
-    case the11 = "1-1"
-}
+//enum Ratio: String, Codable {
+//    case the11 = "1-1"
+//}
 
 // MARK: - ProductPrice
 struct ProductPrice: Codable {
-    let theme: PriceTheme?
+    let theme: String?
     let now: Double?
-    let unitSize: UnitSize?
+    let unitSize: String?
 }
 
-enum PriceTheme: String, Codable {
-    case ah = "ah"
-}
-
-enum UnitSize: String, Codable {
-    case the10Stuks = "10 stuks"
-    case the6Stuks = "6 stuks"
-}
+//enum PriceTheme: String, Codable {
+//    case ah = "ah"
+//}
+//
+//enum UnitSize: String, Codable {
+//    case the10Stuks = "10 stuks"
+//    case the6Stuks = "6 stuks"
+//}
 
 // MARK: - Properties
 struct Properties: Codable {
@@ -475,25 +471,25 @@ struct Properties: Codable {
 
 // MARK: - PropertyIcon
 struct PropertyIcon: Codable {
-    let name: Icon?
-    let title: Title?
+    let name: String?
+    let title: String?
 }
 
-enum Title: String, Codable {
-    case diepvries = "Diepvries"
-    case vega = "Vega"
-    case vegan = "Vegan"
-}
+//enum Title: String, Codable {
+//    case diepvries = "Diepvries"
+//    case vega = "Vega"
+//    case vegan = "Vegan"
+//}
 
 // MARK: - Shield
 struct Shield: Codable {
-    let theme: ControlTheme?
-    let text: Text?
+    let theme: String?
+    let text: String?
 }
 
-enum Text: String, Codable {
-    case the2EHalvePrijs = "2e Halve Prijs"
-}
+//enum Text: String, Codable {
+//    case the2EHalvePrijs = "2e Halve Prijs"
+//}
 
 // MARK: - ProductTaxonomy
 struct ProductTaxonomy: Codable {
@@ -501,8 +497,8 @@ struct ProductTaxonomy: Codable {
     let parentIDS: [Int]?
     let shown: Bool?
     let id, sortSequence, level: Int?
-    let imageSiteTarget: ImageSiteTarget?
-    let name: TaxonomyName?
+    let imageSiteTarget: String?
+    let name: String?
 
     enum CodingKeys: String, CodingKey {
         case images
@@ -511,16 +507,16 @@ struct ProductTaxonomy: Codable {
     }
 }
 
-enum ImageSiteTarget: String, Codable {
-    case appCatDiepvries = "app_cat_diepvries"
-    case appCatIjs = "app_cat_ijs"
-}
+//enum ImageSiteTarget: String, Codable {
+//    case appCatDiepvries = "app_cat_diepvries"
+//    case appCatIjs = "app_cat_ijs"
+//}
 
-enum TaxonomyName: String, Codable {
-    case diepvries = "Diepvries"
-    case iJS = "IJs"
-    case roomHandijs = "Room handijs"
-}
+//enum TaxonomyName: String, Codable {
+//    case diepvries = "Diepvries"
+//    case iJS = "IJs"
+//    case roomHandijs = "Room handijs"
+//}
 
 // MARK: - SuperShops
 struct SuperShops: Codable {
