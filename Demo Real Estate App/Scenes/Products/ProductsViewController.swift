@@ -246,9 +246,9 @@ extension ProductsViewController: CLLocationManagerDelegate {
 extension ProductsViewController: ProductsViewDelegate {
 
   func didSelectItem(at indexPath: IndexPath) {
-    let product = viewModel.selectItem(at: indexPath)
-    let viewController = ProductDetailViewController(view: ProductDetailView(), viewModel: ProductDetailViewModel(product: product))
-    navigationController?.pushViewController(viewController, animated: true)
+//    let product = viewModel.selectItem(at: indexPath)
+//    let viewController = ProductDetailViewController(view: ProductDetailView(), viewModel: ProductDetailViewModel(product: product))
+//    navigationController?.pushViewController(viewController, animated: true)
   }
 
   func searchBarSearchButtonClicked(_ text: String?) {
