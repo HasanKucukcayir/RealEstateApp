@@ -667,6 +667,7 @@
 				DEVELOPMENT_TEAM = 986PSV4D2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Demo Real Estate App/Infrastructure/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Demo App";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This application needs your location in order to be informed how\nfar each house is from your location.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This application needs your location in order to be informed how\nfar each house is from your location.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -696,6 +697,7 @@
 				DEVELOPMENT_TEAM = 986PSV4D2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Demo Real Estate App/Infrastructure/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Demo App";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This application needs your location in order to be informed how\nfar each house is from your location.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This application needs your location in order to be informed how\nfar each house is from your location.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

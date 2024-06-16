@@ -61,8 +61,8 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
   }
 
   func fetchProductPrices() {
-    let urlString = "https://www.ah.nl/zoeken?query=\(searchText)"
-
+    let replacedString = searchText.replacingOccurrences(of:" ", with: "%20")
+    let urlString = "https://www.ah.nl/zoeken?query=\(replacedString)"
 
     guard let url = URL(string: urlString) else { return }
 
@@ -151,8 +151,8 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
       for product in products {
         let imageUrl = product.images?.first?.url.flatMap { URL(string: $0) }
         let price = product.price?.now.flatMap { String(format: "€%.2f", $0) }
-        let address = product.link // Assuming address is stored in link
-        let numberOfBedroom = "N/A" // Replace with actual property if available in product
+        let address = product.title
+        let numberOfBedroom = product.shield?.text ?? ""
         let numberOfBathroom = "N/A" // Replace with actual property if available in product
         let size = "N/A" // Replace with actual property if available in product
         let distance = "N/A" // Replace with actual property if available in product
