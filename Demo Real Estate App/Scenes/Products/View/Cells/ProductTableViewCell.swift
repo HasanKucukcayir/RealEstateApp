@@ -29,7 +29,7 @@ final class ProductTableViewCell: UITableViewCell {
     static let smallPadding: CGFloat = 8
     static let contentPadding: CGFloat = 8.5
     static let productImageViewWidthMultiplier: CGFloat = 0.22
-    static let featureLogosWidthMultiplier: CGFloat = 0.035
+    static let featureLogosWidthMultiplier: CGFloat = 0.07
     static let featureLabelsWidthMultiplier: CGFloat = 0.06
   }
 
@@ -183,15 +183,16 @@ private extension ProductTableViewCell {
     containerView.addSubviewVC(bedroomLabel)
     containerView.addSubviewVC(priceLabel)
     containerView.addSubviewVC(addressLabel)
+    containerView.addSubviewVC(distanceLabel)
     containerView.addSubviewVC(homePropertiesStackView)
     homePropertiesStackView.addArrangedSubview(bedroomImageView)
 //    homePropertiesStackView.addArrangedSubview(bedroomLabel)
-    homePropertiesStackView.addArrangedSubview(bathroomImageView)
+//    homePropertiesStackView.addArrangedSubview(bathroomImageView)
     homePropertiesStackView.addArrangedSubview(bathroomLabel)
-    homePropertiesStackView.addArrangedSubview(sizeImageView)
+//    homePropertiesStackView.addArrangedSubview(sizeImageView)
     homePropertiesStackView.addArrangedSubview(sizeLabel)
-    homePropertiesStackView.addArrangedSubview(distanceImageView)
-    homePropertiesStackView.addArrangedSubview(distanceLabel)
+//    homePropertiesStackView.addArrangedSubview(distanceImageView)
+//    homePropertiesStackView.addArrangedSubview(distanceLabel)
   }
 
   func setupConstraints() {
@@ -236,22 +237,23 @@ private extension ProductTableViewCell {
 //      bedroomLabel.bottomAnchor.constraint(equalTo: homePropertiesStackView.bottomAnchor),
 //      bedroomLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: ViewTrait.featureLabelsWidthMultiplier),
 
-      bathroomImageView.bottomAnchor.constraint(equalTo: homePropertiesStackView.bottomAnchor),
-      bathroomImageView.widthAnchor.constraint(equalTo: bedroomImageView.widthAnchor),
+//      bathroomImageView.bottomAnchor.constraint(equalTo: homePropertiesStackView.bottomAnchor),
+//      bathroomImageView.widthAnchor.constraint(equalTo: bedroomImageView.widthAnchor),
 
-      bathroomLabel.bottomAnchor.constraint(equalTo: homePropertiesStackView.bottomAnchor),
-      bathroomLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: ViewTrait.featureLabelsWidthMultiplier),
+//      bathroomLabel.bottomAnchor.constraint(equalTo: homePropertiesStackView.bottomAnchor),
+//      bathroomLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: ViewTrait.featureLabelsWidthMultiplier),
 
-      sizeImageView.bottomAnchor.constraint(equalTo: homePropertiesStackView.bottomAnchor),
-      sizeImageView.widthAnchor.constraint(equalTo: bedroomImageView.widthAnchor),
+//      sizeImageView.bottomAnchor.constraint(equalTo: homePropertiesStackView.bottomAnchor),
+//      sizeImageView.widthAnchor.constraint(equalTo: bedroomImageView.widthAnchor),
 
-      sizeLabel.bottomAnchor.constraint(equalTo: homePropertiesStackView.bottomAnchor),
-      sizeLabel.widthAnchor.constraint(equalTo: bathroomLabel.widthAnchor),
+//      sizeLabel.bottomAnchor.constraint(equalTo: homePropertiesStackView.bottomAnchor),
+//      sizeLabel.widthAnchor.constraint(equalTo: bathroomLabel.widthAnchor),
 
-      distanceImageView.bottomAnchor.constraint(equalTo: homePropertiesStackView.bottomAnchor),
-      distanceImageView.widthAnchor.constraint(equalTo: bathroomLabel.widthAnchor),
+//      distanceImageView.bottomAnchor.constraint(equalTo: homePropertiesStackView.bottomAnchor),
+//      distanceImageView.widthAnchor.constraint(equalTo: bathroomLabel.widthAnchor),
 
-      distanceLabel.bottomAnchor.constraint(equalTo: homePropertiesStackView.bottomAnchor)
+      distanceLabel.leadingAnchor.constraint(equalTo: bedroomLabel.leadingAnchor),
+      distanceLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor)
 
     ])
   }

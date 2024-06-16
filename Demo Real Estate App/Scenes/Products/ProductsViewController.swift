@@ -153,9 +153,9 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
         let price = product.price?.now.flatMap { String(format: "€%.2f", $0) }
         let address = product.title
         let numberOfBedroom = product.shield?.text ?? ""
-        let numberOfBathroom = "N/A" // Replace with actual property if available in product
-        let size = "N/A" // Replace with actual property if available in product
-        let distance = "N/A" // Replace with actual property if available in product
+        let numberOfBathroom = "" // Replace with actual property if available in product
+        let size = "" // Replace with actual property if available in product
+        let distance = product.price?.unitSize ?? ""
 
         let cellModel = ProductTableViewCellModel(
           imageUrl: imageUrl,

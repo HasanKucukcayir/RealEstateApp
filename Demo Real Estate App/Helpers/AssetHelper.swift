@@ -10,7 +10,7 @@ import UIKit
 enum AssetHelper {
   static let productPlaceHolderImage = UIImage(systemName: "slowmo")!
   static let backButtonImage = UIImage(named: "left-arrow-2")!
-  static let bedroomImage = UIImage(named: "bed-2")
+  static let bedroomImage = UIImage(named: "logo-ah")
   static let bathroomImage = UIImage(named: "shower")
   static let sizeImage = UIImage(named: "square-measument")
   static let distanceImage = UIImage(named: "pin")

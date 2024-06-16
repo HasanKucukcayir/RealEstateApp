@@ -22,8 +22,8 @@ final class ProductsViewModel: ViewModel {
   weak var delegate: ProductsViewModelDelegate?
   private let productAPIService: ProductApiServiceProtocol
 
-  private var productList: ProductList = []
-  private var filteredList: ProductList?
+  var productList: ProductList = []
+  var filteredList: ProductList?
 
   init (productAPIService: ProductApiServiceProtocol) {
     self.productAPIService = productAPIService
