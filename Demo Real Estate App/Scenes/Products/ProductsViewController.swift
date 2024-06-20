@@ -15,6 +15,7 @@ protocol ProductsViewModelDelegate: UIViewController {
 }
 
 var gDataSource:[ProductTableViewCellModel] = []
+let stores = ["AH", "Jumbo"]
 
 final class ProductsViewController: BaseViewController, ViewControllerProtocol {
   typealias ViewModelType = ProductsViewModel
@@ -27,7 +28,17 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
 
   var searchText: String = "Magnum" {
     didSet {
-      self.fetchProductPrices()
+      self.fetchAllPrices()
+    }
+  }
+
+  var counter = 0 {
+    didSet {
+      if counter >= stores.count {
+        DispatchQueue.main.async {
+          self.mainView.provideDataSource(gDataSource)
+        }
+      }
     }
   }
 
@@ -57,10 +68,19 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
     //    checkAuthorizationForLocation()
     //    viewModel.fetchAllProducts()
 
-    fetchProductPrices()
+    counter = 0
+    gDataSource.removeAll()
+    fetchAllPrices()
   }
 
-  func fetchProductPrices() {
+  func fetchAllPrices() {
+    gDataSource.removeAll()
+    fetchAHProductPrices()
+    fetchJumboProductPrices()
+  }
+
+//MARK: - AH -
+  func fetchAHProductPrices() {
     let replacedString = searchText.replacingOccurrences(of:" ", with: "%20")
     let urlString = "https://www.ah.nl/zoeken?query=\(replacedString)"
 
@@ -104,6 +124,90 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
     task.resume()
   }
 
+  //MARK: - Jumbo -
+  func fetchJumboProductPrices() {
+    let replacedString = searchText.replacingOccurrences(of:" ", with: "+")
+    let urlString = "https://www.jumbo.com/producten/?searchType=keyword&searchTerms=\(replacedString)"
+
+    guard let url = URL(string: urlString) else { return }
+
+    let task = URLSession.shared.dataTask(with: url) { data, response, error in
+      guard let data = data, error == nil else { return }
+      do {
+        let html = String(data: data, encoding: .utf8)!
+          let document = try SwiftSoup.parse(html)
+          let productList = try document.select("div.jum-card")
+
+          for product in productList.array() {
+              // Extract title-link
+              if let titleElement = try product.select("a.title-link").first(),
+                 let title = try? titleElement.text(),
+                 let link = try? titleElement.attr("href") {
+                  print("Title: \(title)")
+                  print("Link: \(link)")
+              }
+
+              // Extract price-per-unit
+              if let pricePerUnitElement = try product.select("div.price-per-unit").first(),
+                 let pricePerUnit = try? pricePerUnitElement.text() {
+                  print("Price per Unit: \(pricePerUnit)")
+              }
+
+            var pricePerUnitF = ""
+            if let pricePerUnitElement = try product.select("div.price-per-unit").first(),
+               let pricePerUnit = try? pricePerUnitElement.text() {
+                print("Price per Unit: \(pricePerUnit)")
+              pricePerUnitF = pricePerUnit
+
+            }
+
+            // Extract whole and fractional values
+            var price = "N/A"
+            if let wholeElement = try product.select("span.whole").first(),
+               let fractionalElement = try product.select("sup.fractional").first(),
+               let whole = try? wholeElement.text(),
+               let fractional = try? fractionalElement.text() {
+              print("Price: \(whole).\(fractional)")
+              price = "\(whole).\(fractional)"
+            }
+
+//            let imageUrl = product.images?.first?.url.flatMap { URL(string: $0) }
+            let imageUrl =  URL(string: "https://jumbo.com/dam-images/fit-in/360x360/Products/16062024_1718499768866_1718499790843_612760_DS_08711327608665_H1N1.png")
+            let priceFormatted = price /*{ String(format: "€%.2f", $0) }*/
+            let address = "product.title"
+            let numberOfBedroom = "5"
+            let numberOfBathroom = "" // Replace with actual property if available in product
+            let size = "" // Replace with actual property if available in product
+            let distance = pricePerUnitF
+
+
+            let cellModel = ProductTableViewCellModel(
+              imageUrl: imageUrl,
+              price: price,
+              address: address,
+              numberOfBedroom: numberOfBedroom,
+              numberOfBathroom: numberOfBathroom,
+              size: size,
+              distance: distance, 
+              logo: StoreImageHelper.logoJumbo
+            )
+
+            gDataSource.append(cellModel)
+
+              print("----------")
+          }
+
+        self.counter += 1
+      } catch Exception.Error(let type, let message) {
+          print("Message: \(message)")
+      } catch {
+          print("error")
+      }
+    }
+    task.resume()
+  }
+
+  // MARK: - Extensions -
   func replaceUnicodeCharacters(in jsonString: String) -> String? {
     guard let data = jsonString.data(using: .utf8) else { return nil }
     do {
@@ -141,7 +245,6 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
       return
     }
 
-    gDataSource.removeAll()
     for result in results {
 
       guard let products = result.products else {
@@ -164,16 +267,15 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
           numberOfBedroom: numberOfBedroom,
           numberOfBathroom: numberOfBathroom,
           size: size,
-          distance: distance
+          distance: distance, 
+          logo: StoreImageHelper.logoAlbertHeijn
         )
 
         gDataSource.append(cellModel)
       }
     }
 
-    DispatchQueue.main.async {
-      self.mainView.provideDataSource(gDataSource)
-    }
+    counter += 1
 
   }
 

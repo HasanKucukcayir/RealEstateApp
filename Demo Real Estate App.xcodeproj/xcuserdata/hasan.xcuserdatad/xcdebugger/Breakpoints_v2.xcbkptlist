@@ -46,9 +46,9 @@
             filePath = "Demo Real Estate App/Scenes/Products/ProductsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "fetchProductPrices()"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "fetchAHProductPrices()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -94,8 +94,8 @@
             filePath = "Demo Real Estate App/Scenes/Products/ProductsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
             landmarkName = "parseJson(jsonString:)"
             landmarkType = "7">
             <Locations>
@@ -143,6 +143,54 @@
                   startingLineNumber = "113"
                   endingLineNumber = "113"
                   offsetFromSymbolStart = "212">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "772E33AF-B49E-4F3E-B327-399D25B7869C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Demo Real Estate App/Scenes/Products/ProductsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "fetchJumboProductPrices()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "772E33AF-B49E-4F3E-B327-399D25B7869C - 634870e5734d6718"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Demo_Real_Estate_App.ProductsViewController.fetchJumboProductPrices() -&gt; ()"
+                  moduleName = "Demo Real Estate App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hasan/Desktop/Real%20Estate%20App/000-Original/Real%20Estate%20App/Demo%20Real%20Estate%20App/Scenes/Products/ProductsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "195"
+                  endingLineNumber = "195"
+                  offsetFromSymbolStart = "1348">
+               </Location>
+               <Location
+                  uuid = "772E33AF-B49E-4F3E-B327-399D25B7869C - 634870e5734d679c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Demo_Real_Estate_App.ProductsViewController.fetchJumboProductPrices() -&gt; ()"
+                  moduleName = "Demo Real Estate App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hasan/Desktop/Real%20Estate%20App/000-Original/Real%20Estate%20App/Demo%20Real%20Estate%20App/Scenes/Products/ProductsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "199"
+                  endingLineNumber = "199"
+                  offsetFromSymbolStart = "1348">
                </Location>
             </Locations>
          </BreakpointContent>

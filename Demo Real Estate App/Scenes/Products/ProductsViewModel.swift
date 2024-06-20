@@ -82,7 +82,7 @@ extension ProductsViewModel {
       let size = "\($0.size)"
       let distance = calculateDistance(latitude: $0.latitude, longitude: $0.longitude)
 
-      return ProductTableViewCellModel(imageUrl: imageUrl, price: price, address: address, numberOfBedroom: numberOfBedroom, numberOfBathroom: numberOfBathroom, size: size, distance: distance)
+      return ProductTableViewCellModel(imageUrl: imageUrl, price: price, address: address, numberOfBedroom: numberOfBedroom, numberOfBathroom: numberOfBathroom, size: size, distance: distance, logo: nil)
     }
   }
 

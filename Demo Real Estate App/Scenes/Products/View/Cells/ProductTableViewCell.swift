@@ -54,7 +54,7 @@ extension ProductTableViewCell {
     }
     priceLabel.text = model.price
     addressLabel.text = model.address
-    bedroomImageView.image = AssetHelper.bedroomImage
+    bedroomImageView.image = model.logo
     bedroomLabel.text = model.numberOfBedroom
     bathroomImageView.image = AssetHelper.bathroomImage
     bathroomLabel.text = model.numberOfBathroom
@@ -125,7 +125,7 @@ private extension ProductTableViewCell {
     bedroomImageView = UIImageView()
     bedroomImageView.tintColor = .clear
     bedroomImageView.contentMode = .scaleAspectFit
-    bedroomImageView.image = AssetHelper.bedroomImage
+//    bedroomImageView.image = AssetHelper.bedroomImage
   }
 
   func setupBedroomLabel () {
@@ -268,4 +268,5 @@ struct ProductTableViewCellModel {
   let numberOfBathroom: String
   let size: String
   let distance: String
+  let logo: UIImage?
 }
