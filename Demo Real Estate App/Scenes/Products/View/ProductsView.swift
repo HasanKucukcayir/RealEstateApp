@@ -11,6 +11,7 @@ protocol ProductsViewDelegate: UIViewController {
   func searchBarSearchButtonClicked(_ text: String?)
   func searchBarCancelButtonClicked()
   func didSelectItem(at indexPath: IndexPath)
+  func searchBarDidBeginEditing()
 }
 
 final class ProductsView: BaseView {
@@ -96,8 +97,8 @@ extension ProductsView: UISearchBarDelegate {
 
   func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
     arrangeRightView(isSearchActive: true)
-    searchBar.text = nil
-    delegate?.searchBarCancelButtonClicked()
+//    searchBar.text = nil
+//    delegate?.searchBarCancelButtonClicked()
   }
 
   func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {

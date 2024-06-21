@@ -16,6 +16,10 @@ protocol ProductsViewModelDelegate: UIViewController {
 
 var gDataSource:[ProductTableViewCellModel] = []
 let stores = ["AH", "Jumbo"]
+//let stores = ["AH"]
+
+var startTime = CFAbsoluteTimeGetCurrent()
+var endTime = CFAbsoluteTimeGetCurrent()
 
 final class ProductsViewController: BaseViewController, ViewControllerProtocol {
   typealias ViewModelType = ProductsViewModel
@@ -37,6 +41,8 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
       if counter >= stores.count {
         DispatchQueue.main.async {
           self.mainView.provideDataSource(gDataSource)
+          endTime = CFAbsoluteTimeGetCurrent()
+          print("- - - Took \(endTime - startTime)")
         }
       }
     }
@@ -74,12 +80,13 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
   }
 
   func fetchAllPrices() {
+    startTime = CFAbsoluteTimeGetCurrent()
     gDataSource.removeAll()
     fetchAHProductPrices()
     fetchJumboProductPrices()
   }
 
-//MARK: - AH -
+  //MARK: - AH -
   func fetchAHProductPrices() {
     let replacedString = searchText.replacingOccurrences(of:" ", with: "%20")
     let urlString = "https://www.ah.nl/zoeken?query=\(replacedString)"
@@ -135,73 +142,86 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
       guard let data = data, error == nil else { return }
       do {
         let html = String(data: data, encoding: .utf8)!
-          let document = try SwiftSoup.parse(html)
-          let productList = try document.select("div.jum-card")
+        let document = try SwiftSoup.parse(html)
+        let productList = try document.select("div.jum-card")
 
-          for product in productList.array() {
-              // Extract title-link
-              if let titleElement = try product.select("a.title-link").first(),
-                 let title = try? titleElement.text(),
-                 let link = try? titleElement.attr("href") {
-                  print("Title: \(title)")
-                  print("Link: \(link)")
-              }
+        var index = 0
+        for product in productList.array() {
 
-              // Extract price-per-unit
-              if let pricePerUnitElement = try product.select("div.price-per-unit").first(),
-                 let pricePerUnit = try? pricePerUnitElement.text() {
-                  print("Price per Unit: \(pricePerUnit)")
-              }
+//          if index >= 10 {
+//            break
+//          }
 
-            var pricePerUnitF = ""
-            if let pricePerUnitElement = try product.select("div.price-per-unit").first(),
-               let pricePerUnit = try? pricePerUnitElement.text() {
-                print("Price per Unit: \(pricePerUnit)")
-              pricePerUnitF = pricePerUnit
-
-            }
-
-            // Extract whole and fractional values
-            var price = "N/A"
-            if let wholeElement = try product.select("span.whole").first(),
-               let fractionalElement = try product.select("sup.fractional").first(),
-               let whole = try? wholeElement.text(),
-               let fractional = try? fractionalElement.text() {
-              print("Price: \(whole).\(fractional)")
-              price = "\(whole).\(fractional)"
-            }
-
-//            let imageUrl = product.images?.first?.url.flatMap { URL(string: $0) }
-            let imageUrl =  URL(string: "https://jumbo.com/dam-images/fit-in/360x360/Products/16062024_1718499768866_1718499790843_612760_DS_08711327608665_H1N1.png")
-            let priceFormatted = price /*{ String(format: "€%.2f", $0) }*/
-            let address = "product.title"
-            let numberOfBedroom = "5"
-            let numberOfBathroom = "" // Replace with actual property if available in product
-            let size = "" // Replace with actual property if available in product
-            let distance = pricePerUnitF
-
-
-            let cellModel = ProductTableViewCellModel(
-              imageUrl: imageUrl,
-              price: price,
-              address: address,
-              numberOfBedroom: numberOfBedroom,
-              numberOfBathroom: numberOfBathroom,
-              size: size,
-              distance: distance, 
-              logo: StoreImageHelper.logoJumbo
-            )
-
-            gDataSource.append(cellModel)
-
-              print("----------")
+          var productTitle = ""
+          if let titleElement = try product.select("a.title-link").first(),
+             let title = try? titleElement.text(),
+             let link = try? titleElement.attr("href") {
+            productTitle = title
           }
+
+          // Extract price-per-unit
+          if let pricePerUnitElement = try product.select("div.price-per-unit").first(),
+             let pricePerUnit = try? pricePerUnitElement.text() {
+          }
+
+          var pricePerUnitF = ""
+          if let pricePerUnitElement = try product.select("div.price-per-unit").first(),
+             let pricePerUnit = try? pricePerUnitElement.text() {
+            pricePerUnitF = pricePerUnit
+
+          }
+
+          // Extract whole and fractional values
+          var price = "N/A"
+          if let wholeElement = try product.select("span.whole").first(),
+             let fractionalElement = try product.select("sup.fractional").first(),
+             let whole = try? wholeElement.text(),
+             let fractional = try? fractionalElement.text() {
+            price = "\(whole).\(fractional)"
+          }
+
+          var tag = ""
+          // Extract tag-line elements
+          let tagLineElements = try product.select("span.tag-line")
+          for tagLineElement in tagLineElements {
+            if let tagLine = try? tagLineElement.text() {
+              tag += " \(tagLine)"
+            }
+          }
+
+          var imageUrl = ""
+          if let productImageElement = try product.select("div.product-image img").first(),
+             let productImageSrc = try? productImageElement.attr("src") {
+            imageUrl = productImageSrc
+          }
+
+          let productImageUrl = URL(string: imageUrl)
+          let priceFormatted = "€\(price)"
+          let address = productTitle
+          let numberOfBedroom = tag
+          let numberOfBathroom = "" // Replace with actual property if available in product
+          let size = "" // Replace with actual property if available in product
+          let distance = pricePerUnitF
+          let cellModel = ProductTableViewCellModel(
+            imageUrl: productImageUrl,
+            price: priceFormatted,
+            address: address,
+            numberOfBedroom: numberOfBedroom,
+            numberOfBathroom: numberOfBathroom,
+            size: size,
+            distance: distance,
+            logo: StoreImageHelper.logoJumbo
+          )
+
+          gDataSource.append(cellModel)
+          index += 1
+        }
 
         self.counter += 1
       } catch Exception.Error(let type, let message) {
-          print("Message: \(message)")
+        print("Message: \(message)")
       } catch {
-          print("error")
+        print("error")
       }
     }
     task.resume()
@@ -245,13 +265,19 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
       return
     }
 
+    var index = 0
     for result in results {
 
       guard let products = result.products else {
         continue
       }
 
+//      if index >= 10 {
+//        break
+//      }
+
       for product in products {
+
         let imageUrl = product.images?.first?.url.flatMap { URL(string: $0) }
         let price = product.price?.now.flatMap { String(format: "€%.2f", $0) }
         let address = product.title
@@ -267,11 +293,12 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
           numberOfBedroom: numberOfBedroom,
           numberOfBathroom: numberOfBathroom,
           size: size,
-          distance: distance, 
+          distance: distance,
           logo: StoreImageHelper.logoAlbertHeijn
         )
 
         gDataSource.append(cellModel)
+        index += 1
       }
     }
 
@@ -346,15 +373,18 @@ extension ProductsViewController: CLLocationManagerDelegate {
 
 // MARK: - ProductsViewDelegate
 extension ProductsViewController: ProductsViewDelegate {
+  func searchBarDidBeginEditing() {
+    counter = 0
+  }
 
   func didSelectItem(at indexPath: IndexPath) {
-//    let product = viewModel.selectItem(at: indexPath)
-//    let viewController = ProductDetailViewController(view: ProductDetailView(), viewModel: ProductDetailViewModel(product: product))
-//    navigationController?.pushViewController(viewController, animated: true)
+    //    let product = viewModel.selectItem(at: indexPath)
+    //    let viewController = ProductDetailViewController(view: ProductDetailView(), viewModel: ProductDetailViewModel(product: product))
+    //    navigationController?.pushViewController(viewController, animated: true)
   }
 
   func searchBarSearchButtonClicked(_ text: String?) {
-//    mainView.provideDataSource(viewModel.filterProduct(with: text))
+    //    mainView.provideDataSource(viewModel.filterProduct(with: text))
     searchText = text ?? ""
   }
 
