@@ -145,7 +145,7 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
         let document = try SwiftSoup.parse(html)
         let productList = try document.select("div.jum-card")
 
-        var index = 0
+//        var index = 0
         for product in productList.array() {
 
 //          if index >= 10 {
@@ -214,7 +214,7 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
           )
 
           gDataSource.append(cellModel)
-          index += 1
+//          index += 1
         }
 
         self.counter += 1
@@ -265,7 +265,7 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
       return
     }
 
-    var index = 0
+//    var index = 0
     for result in results {
 
       guard let products = result.products else {
@@ -298,7 +298,7 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
         )
 
         gDataSource.append(cellModel)
-        index += 1
+//        index += 1
       }
     }
 

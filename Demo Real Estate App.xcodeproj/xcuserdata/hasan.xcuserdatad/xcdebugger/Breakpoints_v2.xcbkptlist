@@ -50,38 +50,6 @@
             endingLineNumber = "110"
             landmarkName = "fetchAHProductPrices()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "EBE3AEBD-FB07-4135-9BFF-384D9F295C10 - f13ec2338dcc84b6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Demo_Real_Estate_App.ProductsViewController.fetchMagnumPrice() -&gt; ()"
-                  moduleName = "Demo Real Estate App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hasan/Desktop/Real%20Estate%20App/000-Original/Real%20Estate%20App/Demo%20Real%20Estate%20App/Scenes/Products/ProductsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "76"
-                  endingLineNumber = "76"
-                  offsetFromSymbolStart = "596">
-               </Location>
-               <Location
-                  uuid = "EBE3AEBD-FB07-4135-9BFF-384D9F295C10 - f13ec2338dcc8508"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Demo_Real_Estate_App.ProductsViewController.fetchMagnumPrice() -&gt; ()"
-                  moduleName = "Demo Real Estate App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hasan/Desktop/Real%20Estate%20App/000-Original/Real%20Estate%20App/Demo%20Real%20Estate%20App/Scenes/Products/ProductsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "74"
-                  endingLineNumber = "74"
-                  offsetFromSymbolStart = "1164">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -98,53 +66,6 @@
             endingLineNumber = "258"
             landmarkName = "parseJson(jsonString:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "0D5EDADA-5D3B-4C74-B9A4-B7CD0B889AB0 - 13152d340a440972"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Demo_Real_Estate_App.ProductsViewController.parseJson(jsonString: Swift.String) -&gt; ()"
-                  moduleName = "Demo Real Estate App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hasan/Desktop/Real%20Estate%20App/000-Original/Real%20Estate%20App/Demo%20Real%20Estate%20App/Scenes/Products/ProductsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "113"
-                  endingLineNumber = "113"
-                  offsetFromSymbolStart = "28">
-               </Location>
-               <Location
-                  uuid = "0D5EDADA-5D3B-4C74-B9A4-B7CD0B889AB0 - 13152d340a440972"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Demo_Real_Estate_App.ProductsViewController.parseJson(jsonString: Swift.String) -&gt; ()"
-                  moduleName = "Demo Real Estate App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hasan/Desktop/Real%20Estate%20App/000-Original/Real%20Estate%20App/Demo%20Real%20Estate%20App/Scenes/Products/ProductsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "113"
-                  endingLineNumber = "113"
-                  offsetFromSymbolStart = "416">
-               </Location>
-               <Location
-                  uuid = "0D5EDADA-5D3B-4C74-B9A4-B7CD0B889AB0 - 13152d340a440972"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Demo_Real_Estate_App.ProductsViewController.parseJson(jsonString: Swift.String) -&gt; ()"
-                  moduleName = "Demo Real Estate App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hasan/Desktop/Real%20Estate%20App/000-Original/Real%20Estate%20App/Demo%20Real%20Estate%20App/Scenes/Products/ProductsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "113"
-                  endingLineNumber = "113"
-                  offsetFromSymbolStart = "212">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -161,38 +82,6 @@
             endingLineNumber = "220"
             landmarkName = "fetchJumboProductPrices()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "772E33AF-B49E-4F3E-B327-399D25B7869C - 634870e5734d6718"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Demo_Real_Estate_App.ProductsViewController.fetchJumboProductPrices() -&gt; ()"
-                  moduleName = "Demo Real Estate App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hasan/Desktop/Real%20Estate%20App/000-Original/Real%20Estate%20App/Demo%20Real%20Estate%20App/Scenes/Products/ProductsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "195"
-                  endingLineNumber = "195"
-                  offsetFromSymbolStart = "1348">
-               </Location>
-               <Location
-                  uuid = "772E33AF-B49E-4F3E-B327-399D25B7869C - 634870e5734d679c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Demo_Real_Estate_App.ProductsViewController.fetchJumboProductPrices() -&gt; ()"
-                  moduleName = "Demo Real Estate App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hasan/Desktop/Real%20Estate%20App/000-Original/Real%20Estate%20App/Demo%20Real%20Estate%20App/Scenes/Products/ProductsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "199"
-                  endingLineNumber = "199"
-                  offsetFromSymbolStart = "1348">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

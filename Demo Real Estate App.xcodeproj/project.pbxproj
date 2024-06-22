@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9F03667A2C12CD1E007AC807 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0366792C12CD1E007AC807 /* SwiftSoup */; };
 		9F03667C2C1D39F6007AC807 /* AHListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F03667B2C1D39F6007AC807 /* AHListModel.swift */; };
-		9F0C5C67272C4A8200E39735 /* Default.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F0C5C69272C4A8200E39735 /* Default.strings */; };
 		9F396D77272FFBDE0089A5DA /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 9F396D76272FFBDE0089A5DA /* .swiftlint.yml */; };
 		9F3AC5C92712FB7000AB0B33 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AC5C82712FB7000AB0B33 /* InfoView.swift */; };
 		9F3AC5CB271314E000AB0B33 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AC5CA271314E000AB0B33 /* InfoViewController.swift */; };
@@ -36,6 +35,7 @@
 		9F680E4627052E0800182822 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F680E4527052E0800182822 /* BaseViewController.swift */; };
 		9F680E4827052E2300182822 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F680E4727052E2300182822 /* ViewModel.swift */; };
 		9F680E4A2705948400182822 /* ViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F680E492705948400182822 /* ViewControllerProtocol.swift */; };
+		9F6D51EB2C267515003B6A75 /* Default.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 9F6D51EA2C267515003B6A75 /* Default.xcstrings */; };
 		9F77D998270CE06300196E95 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F77D997270CE06300196E95 /* ProductsView.swift */; };
 		9F77D99A270CE31E00196E95 /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F77D999270CE31E00196E95 /* ProductsViewModel.swift */; };
 		9F77D99C270CE34900196E95 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F77D99B270CE34900196E95 /* ProductsViewController.swift */; };
@@ -64,8 +64,6 @@
 /* Begin PBXFileReference section */
 		9F03667B2C1D39F6007AC807 /* AHListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AHListModel.swift; sourceTree = "<group>"; };
 		9F061E262746A65B00FFCF45 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		9F0C5C68272C4A8200E39735 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Default.strings; sourceTree = "<group>"; };
-		9F0C5C6A272C4A8C00E39735 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Default.strings; sourceTree = "<group>"; };
 		9F396D76272FFBDE0089A5DA /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		9F3AC5C82712FB7000AB0B33 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		9F3AC5CA271314E000AB0B33 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +92,7 @@
 		9F680E4527052E0800182822 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		9F680E4727052E2300182822 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		9F680E492705948400182822 /* ViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerProtocol.swift; sourceTree = "<group>"; };
+		9F6D51EA2C267515003B6A75 /* Default.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Default.xcstrings; sourceTree = "<group>"; };
 		9F77D997270CE06300196E95 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		9F77D999270CE31E00196E95 /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
 		9F77D99B270CE34900196E95 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
@@ -142,7 +141,7 @@
 		9F0C5C58272C115200E39735 /* Localizable Strings */ = {
 			isa = PBXGroup;
 			children = (
-				9F0C5C69272C4A8200E39735 /* Default.strings */,
+				9F6D51EA2C267515003B6A75 /* Default.xcstrings */,
 			);
 			path = "Localizable Strings";
 			sourceTree = "<group>";
@@ -448,10 +447,10 @@
 				9F484DDD2710B24900772B5D /* GothamSSm-Medium.otf in Resources */,
 				9F484DE02710B24900772B5D /* GothamSSm-XLightItalic.otf in Resources */,
 				9F484DDF2710B24900772B5D /* GothamSSm-XLight.otf in Resources */,
+				9F6D51EB2C267515003B6A75 /* Default.xcstrings in Resources */,
 				9F484DDC2710B24900772B5D /* GothamSSm-Bold.otf in Resources */,
 				9F680E182703E81E00182822 /* Assets.xcassets in Resources */,
 				9F484DD92710B24900772B5D /* GothamSSm-BlackItalic.otf in Resources */,
-				9F0C5C67272C4A8200E39735 /* Default.strings in Resources */,
 				9F484DD82710B24900772B5D /* GothamSSm-Light.otf in Resources */,
 				9F484DCC2710B09500772B5D /* GothamSSm-Book.otf in Resources */,
 				9F484DDE2710B24900772B5D /* GothamSSm-MediumItalic.otf in Resources */,
@@ -528,18 +527,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		9F0C5C69272C4A8200E39735 /* Default.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9F0C5C68272C4A8200E39735 /* en */,
-				9F0C5C6A272C4A8C00E39735 /* nl */,
-			);
-			name = Default.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		9F680E1D2703E81E00182822 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -593,6 +580,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -648,6 +636,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -663,7 +652,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 986PSV4D2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Demo Real Estate App/Infrastructure/Info.plist";
@@ -678,7 +667,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hkucukcayir.Demo-Price-Comparison-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -693,7 +682,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 986PSV4D2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Demo Real Estate App/Infrastructure/Info.plist";
@@ -708,7 +697,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hkucukcayir.Demo-Price-Comparison-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
