@@ -15,8 +15,12 @@ protocol ProductsViewModelDelegate: UIViewController {
 }
 
 var gDataSource:[ProductTableViewCellModel] = []
-let stores = ["AH", "Jumbo"]
-//let stores = ["AH"]
+
+let stores = [
+  Stores.albertHeijn,
+  Stores.jumbo,
+  Stores.kruidvat
+]
 
 var startTime = CFAbsoluteTimeGetCurrent()
 var endTime = CFAbsoluteTimeGetCurrent()
@@ -42,7 +46,7 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
         DispatchQueue.main.async {
           self.mainView.provideDataSource(gDataSource)
           endTime = CFAbsoluteTimeGetCurrent()
-          print("- - - Took \(endTime - startTime)")
+          print("- - - TookC \(endTime - startTime)")
         }
       }
     }
@@ -79,26 +83,93 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
     fetchAllPrices()
   }
 
+  @MainActor
   func fetchAllPrices() {
     startTime = CFAbsoluteTimeGetCurrent()
     gDataSource.removeAll()
-    fetchAHProductPrices()
-    fetchJumboProductPrices()
+    Task {
+      await fetchAHProductPrices()
+      await fetchJumboProductPrices()
+      await fetchKruidvatProductPrices()
+    }
   }
 
   //MARK: - AH -
-  func fetchAHProductPrices() {
+  func fetchKruidvatProductPrices() async {
+    endTime = CFAbsoluteTimeGetCurrent()
+    print("- - - TookKruidvatStart\(endTime - startTime)")
+    let replacedString = searchText.replacingOccurrences(of:" ", with: "+")
+    //    let urlString = "https://www.jumbo.com/producten/?searchType=keyword&searchTerms=\(replacedString)"
+
+    let urlString = "https://www.etos.nl/search/?q=robijn%20color"
+    guard let url = URL(string: urlString) else { return }
+
+    let task = URLSession.shared.dataTask(with: url) { data, response, error in
+      guard let data1 = data, error == nil else { return }
+      endTime = CFAbsoluteTimeGetCurrent()
+      print("- - - TookKruidvatEnd \(endTime - startTime)")
+      do {
+        let html = String(data: data1, encoding: .utf8)!
+
+        let document = try SwiftSoup.parse(html)
+        let productListCols = try document.select(".product__list-col")
+
+
+
+        for productListCol in productListCols {
+          let impressionTrackers = try productListCol.select("e2-impression-tracker")
+
+          for tracker in impressionTrackers {
+            let className = try tracker.attr("class")
+            let viewHandler = try tracker.attr("view-handler")
+            let dataType = try tracker.attr("data-type")
+            let dataCurrency = try tracker.attr("data-currency")
+            let dataItemName = try tracker.attr("data-item-name")
+            let dataCode = try tracker.attr("data-code")
+            let dataPrice = try tracker.attr("data-price")
+
+            //                  print("Class: \(className)")
+            //                  print("View Handler: \(viewHandler)")
+            //                  print("Data Type: \(dataType)")
+            //                  print("Data Currency: \(dataCurrency)")
+            //                  print("Data Item Name: \(dataItemName)")
+            //                  print("Data Code: \(dataCode)")
+            //                  print("Data Price: \(dataPrice)")
+            //                  print("---------------------")
+          }
+        }
+
+        endTime = CFAbsoluteTimeGetCurrent()
+        print("- - - TooKruidvatEndResult\(endTime - startTime)")
+        self.counter += 1
+      } catch Exception.Error(let type, let message) {
+        print("Message: \(message)")
+      } catch {
+        print("error")
+      }
+    }
+    task.resume()
+  }
+
+  //MARK: - AH -
+  func fetchAHProductPrices() async {
     let replacedString = searchText.replacingOccurrences(of:" ", with: "%20")
     let urlString = "https://www.ah.nl/zoeken?query=\(replacedString)"
+
+    endTime = CFAbsoluteTimeGetCurrent()
+    print("- - - TookAHStart\(endTime - startTime)")
 
     guard let url = URL(string: urlString) else { return }
 
     let task = URLSession.shared.dataTask(with: url) { data, response, error in
-      guard let data = data, error == nil else { return }
-      do {
-        let html = String(data: data, encoding: .utf8)!
 
-        let document = try SwiftSoup.parse(html)
+      endTime = CFAbsoluteTimeGetCurrent()
+      print("- - - TookAHEnd\(endTime - startTime)")
+      guard let data1 = data, error == nil else { return }
+      do {
+        let html1 = String(data: data1, encoding: .utf8)!
+
+        let document = try SwiftSoup.parse(html1)
         // Select the script tag containing the window.__INITIAL_STATE__
         let scriptTags = try document.select("script")
 
@@ -132,25 +203,31 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
   }
 
   //MARK: - Jumbo -
-  func fetchJumboProductPrices() {
+  func fetchJumboProductPrices() async {
+
+    endTime = CFAbsoluteTimeGetCurrent()
+    print("- - - TookJumboStart\(endTime - startTime)")
+
     let replacedString = searchText.replacingOccurrences(of:" ", with: "+")
     let urlString = "https://www.jumbo.com/producten/?searchType=keyword&searchTerms=\(replacedString)"
 
     guard let url = URL(string: urlString) else { return }
 
     let task = URLSession.shared.dataTask(with: url) { data, response, error in
-      guard let data = data, error == nil else { return }
+      endTime = CFAbsoluteTimeGetCurrent()
+      print("- - - TookJumboEnd\(endTime - startTime)")
+      guard let data1 = data, error == nil else { return }
       do {
-        let html = String(data: data, encoding: .utf8)!
+        let html = String(data: data1, encoding: .utf8)!
         let document = try SwiftSoup.parse(html)
         let productList = try document.select("div.jum-card")
 
-//        var index = 0
+        //        var index = 0
         for product in productList.array() {
 
-//          if index >= 10 {
-//            break
-//          }
+          //          if index >= 10 {
+          //            break
+          //          }
 
           var productTitle = ""
           if let titleElement = try product.select("a.title-link").first(),
@@ -214,9 +291,11 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
           )
 
           gDataSource.append(cellModel)
-//          index += 1
+          //          index += 1
         }
 
+        endTime = CFAbsoluteTimeGetCurrent()
+        print("- - - TooJumboEndResult\(endTime - startTime)")
         self.counter += 1
       } catch Exception.Error(let type, let message) {
         print("Message: \(message)")
@@ -265,16 +344,16 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
       return
     }
 
-//    var index = 0
+    //    var index = 0
     for result in results {
 
       guard let products = result.products else {
         continue
       }
 
-//      if index >= 10 {
-//        break
-//      }
+      //      if index >= 10 {
+      //        break
+      //      }
 
       for product in products {
 
@@ -298,10 +377,11 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
         )
 
         gDataSource.append(cellModel)
-//        index += 1
+        //        index += 1
       }
     }
-
+    endTime = CFAbsoluteTimeGetCurrent()
+    print("- - - TookAHEndResult\(endTime - startTime)")
     counter += 1
 
   }
@@ -386,6 +466,7 @@ extension ProductsViewController: ProductsViewDelegate {
   func searchBarSearchButtonClicked(_ text: String?) {
     //    mainView.provideDataSource(viewModel.filterProduct(with: text))
     searchText = text ?? ""
+    counter = 0
   }
 
   func searchBarCancelButtonClicked() {
