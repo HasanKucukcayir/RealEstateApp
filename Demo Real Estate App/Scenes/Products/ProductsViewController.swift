@@ -14,12 +14,15 @@ protocol ProductsViewModelDelegate: UIViewController {
   func didFailForGettingProducts()
 }
 
-var gDataSource:[ProductTableViewCellModel] = []
+var gDataSource: [ProductTableViewCellModel] = []
+var storeViewModel = StoreModelImplementation()
+var dataList: [DataModel] = []
 
 let stores = [
-  Stores.albertHeijn,
-  Stores.jumbo,
-  Stores.kruidvat
+  StoreModel.albertHeijn,
+  StoreModel.jumbo,
+  StoreModel.kruidvat,
+  StoreModel.etos
 ]
 
 var startTime = CFAbsoluteTimeGetCurrent()
@@ -36,13 +39,13 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
 
   var searchText: String = "Magnum" {
     didSet {
-      self.fetchAllPrices()
+      self.performAction()
     }
   }
 
   var counter = 0 {
     didSet {
-      if counter >= stores.count {
+      if counter > stores.count {
         DispatchQueue.main.async {
           self.mainView.provideDataSource(gDataSource)
           endTime = CFAbsoluteTimeGetCurrent()
@@ -80,18 +83,103 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
 
     counter = 0
     gDataSource.removeAll()
-    fetchAllPrices()
+    performAction()
   }
 
-  @MainActor
-  func fetchAllPrices() {
+  func performRequest(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+      let task = URLSession.shared.dataTask(with: url, completionHandler: completion)
+      task.resume()
+  }
+
+  func performAction() {
+    let dispatchGroup = DispatchGroup()
     startTime = CFAbsoluteTimeGetCurrent()
-    gDataSource.removeAll()
-    Task {
-      await fetchAHProductPrices()
-      await fetchJumboProductPrices()
-      await fetchKruidvatProductPrices()
+
+    for store in stores {
+      let urlString = storeViewModel.getBaseUrl(store: store, searchText: searchText)
+      guard let url = URL(string: urlString) else { return }
+      dispatchGroup.enter()
+      performRequest(url: url) { data, response, error in
+        defer { dispatchGroup.leave() }
+
+        if let error = error {
+          print("Error: \(error.localizedDescription)")
+        } else if let data = data, let response = response as? HTTPURLResponse {
+          print("Response Code: \(response.statusCode), Data: \(data.count) bytes")
+          dataList.append(DataModel(store: store, data: data))
+        }
+      }
     }
+
+    // Notify when all requests are complete
+    dispatchGroup.notify(queue: .main) {
+        print("All requests completed")
+      self.decodeHtmlFiles()
+      endTime = CFAbsoluteTimeGetCurrent()
+      print("- - - \(endTime - startTime)")
+    }
+
+    // Keep the main thread alive to wait for async tasks
+    RunLoop.main.run()
+  }
+
+  func decodeHtmlFiles() {
+    for data in dataList {
+      let html = String(data: data.data, encoding: .utf8)!
+
+      counter += 1
+
+      switch data.store {
+      case .albertHeijn:
+        decodeAH(html: html)
+      case .jumbo:
+        print("Jumbo")
+      case .kruidvat:
+        print("Jumbo")
+      case .etos:
+        print("Jumbo")
+      }
+
+    }
+  }
+
+  //MARK: - Decode -
+
+  func decodeAH(html: String) {
+    do {
+      let document = try SwiftSoup.parse(html)
+      // Select the script tag containing the window.__INITIAL_STATE__
+      let scriptTags = try document.select("script")
+
+      // Iterate over script tags to find the one containing __INITIAL_STATE__
+      for script in scriptTags {
+        let scriptContent = try script.html()
+
+        // Check if the script contains the __INITIAL_STATE__ variable
+        if scriptContent.contains("window.__INITIAL_STATE") {
+
+          let pattern = #"window\.__INITIAL_STATE__\s*=\s*(\{.*?\})\s*window\.__APOLLO_STATE__"#
+          if let regex = try? NSRegularExpression(pattern: pattern, options: []),
+             let match = regex.firstMatch(in: scriptContent, options: [], range: NSRange(location: 0, length: scriptContent.utf16.count)) {
+            if let range = Range(match.range(at: 1), in: scriptContent) {
+              let jsonString = String(scriptContent[range])
+              let converted = self.convertUndefinedToNull(in: jsonString)
+              guard let decodedString = self.replaceUnicodeCharacters(in: converted) else {
+                break
+              }
+              self.parseJson(jsonString: decodedString)
+              break
+            }
+          }
+        }
+      }
+    } catch {
+      print("Error: \(error)")
+    }
+  }
+
+  func decodeJumbo(html: String) {
+
   }
 
   //MARK: - AH -
@@ -393,9 +481,6 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
   }
 }
 
-
-
-
 // MARK: - CLLocationManagerDelegate
 extension ProductsViewController: CLLocationManagerDelegate {
 
@@ -458,7 +543,7 @@ extension ProductsViewController: ProductsViewDelegate {
   }
 
   func didSelectItem(at indexPath: IndexPath) {
-    //    let product = viewModel.selectItem(at: indexPath)
+        let product = viewModel.selectItem(at: indexPath)
     //    let viewController = ProductDetailViewController(view: ProductDetailView(), viewModel: ProductDetailViewModel(product: product))
     //    navigationController?.pushViewController(viewController, animated: true)
   }
