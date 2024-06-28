@@ -23,8 +23,8 @@ enum StoreModel {
   case jumbo
   case kruidvat
   case etos
-//  case lidl
-//  case trekpleister
+  case lidl
+  case trekpleister
 }
 
 struct DataModel {
@@ -50,10 +50,12 @@ class StoreModelImplementation {
       return "https://www.kruidvat.nl/search?q="+replaced+"&text="+replaced+"&searchType=manual"
     case .etos:
       return "https://www.etos.nl/search/?q="+replaceSpaceCharWithUnicodeChar(searchText: searchText)
-//    case .lidl:
-//      return ""
-//    case .trekpleister:
-//      return ""
+    case .lidl:
+      let replaced = replaceSpaceCharWithPlusChar(searchText: searchText)
+      return "https://www.lidl.nl/q/search?q="+replaced
+    case .trekpleister:
+      let replaced = replaceSpaceCharWithPlusChar(searchText: searchText)
+      return "https://www.trekpleister.nl/search?q="+replaced+"&text="+replaced+"&searchType=manual"
     }
   }
 

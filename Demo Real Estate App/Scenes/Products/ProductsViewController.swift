@@ -45,7 +45,7 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
 
   var counter = 0 {
     didSet {
-      if counter > stores.count {
+      if counter >= stores.count {
         DispatchQueue.main.async {
           self.mainView.provideDataSource(gDataSource)
           endTime = CFAbsoluteTimeGetCurrent()
@@ -81,8 +81,6 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
     //    checkAuthorizationForLocation()
     //    viewModel.fetchAllProducts()
 
-    counter = 0
-    gDataSource.removeAll()
     performAction()
   }
 
@@ -92,6 +90,8 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
   }
 
   func performAction() {
+    clearDataSources()
+
     let dispatchGroup = DispatchGroup()
     startTime = CFAbsoluteTimeGetCurrent()
 
@@ -120,7 +120,13 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
     }
 
     // Keep the main thread alive to wait for async tasks
-    RunLoop.main.run()
+//    RunLoop.main.run()
+  }
+
+  func clearDataSources() {
+    counter = 0
+    gDataSource.removeAll()
+    dataList.removeAll()
   }
 
   func decodeHtmlFiles() {
@@ -138,6 +144,10 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
         print("Jumbo")
       case .etos:
         print("Jumbo")
+      case .lidl:
+        print("Jumbo")
+      case .trekpleister:
+        print("trekpleister")
       }
 
     }
