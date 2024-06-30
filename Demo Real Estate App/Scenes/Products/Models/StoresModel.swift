@@ -16,6 +16,7 @@ let urlsdsds = [
     URL(string: "https://www.lidl.nl/q/search?q=tuinslang")!,
     URL(string: "https://www.praxis.nl/search?text=gardena")!,
     URL(string: "https://www.trekpleister.nl/search?q=pampers&text=pampers&searchType=manual")!
+//    https://www.action.com/nl-nl/search/?q=dreft%20afwas
 ]
 
 enum StoreModel {
@@ -25,6 +26,7 @@ enum StoreModel {
   case etos
   case lidl
   case trekpleister
+  case action
 }
 
 struct DataModel {
@@ -56,6 +58,9 @@ class StoreModelImplementation {
     case .trekpleister:
       let replaced = replaceSpaceCharWithPlusChar(searchText: searchText)
       return "https://www.trekpleister.nl/search?q="+replaced+"&text="+replaced+"&searchType=manual"
+    case .action:
+      let replaced = replaceSpaceCharWithUnicodeChar(searchText: searchText)
+      return "https://www.action.com/nl-nl/search/?q="+replaced
     }
   }
 
