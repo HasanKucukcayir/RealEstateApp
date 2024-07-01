@@ -26,4 +26,5 @@ enum AssetHelper {
 enum StoreImageHelper {
   static let logoAlbertHeijn = UIImage(named: "logo-ah")
   static let logoJumbo = UIImage(named: "jumbo")
+  static let logoKruidvat = UIImage(named: "kruidvat")
 }

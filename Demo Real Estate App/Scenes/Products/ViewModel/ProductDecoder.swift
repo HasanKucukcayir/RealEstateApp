@@ -16,6 +16,9 @@ class ProductDecoder {
 
   weak var delegate: ProductDecoderDelegate?
 
+  let queue = DispatchQueue.global(qos: .userInitiated)
+  let group = DispatchGroup()
+
   var counter = 0 {
     didSet {
 //      if counter >= stores.count {
@@ -118,19 +121,19 @@ class ProductDecoder {
 
         let productImageUrl = URL(string: imageUrl)
         let priceFormatted = "€\(price)"
-        let address = productTitle
-        let numberOfBedroom = tag
+        let title = productTitle
+        let deal = tag
         let numberOfBathroom = "" // Replace with actual property if available in product
         let size = "" // Replace with actual property if available in product
-        let distance = pricePerUnitF
+        let unit = pricePerUnitF
         let cellModel = ProductTableViewCellModel(
           imageUrl: productImageUrl,
           price: priceFormatted,
-          address: address,
-          numberOfBedroom: numberOfBedroom,
+          productName: title,
+          promotion: deal,
           numberOfBathroom: numberOfBathroom,
           size: size,
-          distance: distance,
+          unitCount: unit,
           logo: StoreImageHelper.logoJumbo
         )
 
@@ -141,6 +144,57 @@ class ProductDecoder {
       endTime = CFAbsoluteTimeGetCurrent()
       print("- - - TooJumboEndResult\(endTime - startTime)")
       self.counter += 1
+    } catch Exception.Error(let type, let message) {
+      print("Message: \(message)")
+    } catch {
+      print("error")
+    }
+  }
+
+  func decodeKruidvat(html: String) {
+    do {
+      let document = try SwiftSoup.parse(html)
+      let productListCols = try document.select(".product__list-col")
+
+      for productListCol in productListCols {
+        let impressionTrackers = try productListCol.select("e2-impression-tracker")
+
+        for tracker in impressionTrackers {
+
+          // Extracting the image src
+          let imageElement = try tracker.select("img.tile__product-slide-image").first()
+          let imageSrc = try imageElement!.attr("src")
+
+          // Extracting the link href
+          let linkElement = try tracker.select("a.ClickSearchResultEvent_Class.tile__product-slide-link").first()
+          let linkHref = try linkElement!.attr("href")
+
+          let className = try tracker.attr("class")
+          let viewHandler = try tracker.attr("view-handler")
+          let dataType = try tracker.attr("data-type")
+          let dataCurrency = try tracker.attr("data-currency")
+          let dataItemName = try tracker.attr("data-item-name")
+          let dataCode = try tracker.attr("data-code")
+          let dataPrice = try tracker.attr("data-price")
+
+          let cellModel = ProductTableViewCellModel(
+            imageUrl: URL(string: "https://www.kruidvat.nl/\(imageSrc)"),
+            price: "€\(dataPrice)",
+            productName: className,
+            promotion: "1",
+            numberOfBathroom: "",
+            size: dataCurrency,
+            unitCount: dataType,
+            logo: StoreImageHelper.logoKruidvat
+          )
+
+          gDataSource.append(cellModel)
+        }
+      }
+
+      endTime = CFAbsoluteTimeGetCurrent()
+      print("- - - TooKruidvatEndResult\(endTime - startTime)")
+        self.counter += 1
     } catch Exception.Error(let type, let message) {
       print("Message: \(message)")
     } catch {
@@ -201,20 +255,20 @@ class ProductDecoder {
 
         let imageUrl = product.images?.first?.url.flatMap { URL(string: $0) }
         let price = product.price?.now.flatMap { String(format: "€%.2f", $0) }
-        let address = product.title
-        let numberOfBedroom = product.shield?.text ?? ""
+        let name = product.title
+        let promotion = product.shield?.text ?? ""
         let numberOfBathroom = "" // Replace with actual property if available in product
         let size = "" // Replace with actual property if available in product
-        let distance = product.price?.unitSize ?? ""
+        let unit = product.price?.unitSize ?? ""
 
         let cellModel = ProductTableViewCellModel(
           imageUrl: imageUrl,
           price: price,
-          address: address,
-          numberOfBedroom: numberOfBedroom,
+          productName: name,
+          promotion: promotion,
           numberOfBathroom: numberOfBathroom,
           size: size,
-          distance: distance,
+          unitCount: unit,
           logo: StoreImageHelper.logoAlbertHeijn
         )
 

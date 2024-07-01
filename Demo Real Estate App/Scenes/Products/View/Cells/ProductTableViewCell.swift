@@ -53,15 +53,15 @@ extension ProductTableViewCell {
       productImageView.setCachedImage(from: url, placeholder: AssetHelper.productPlaceHolderImage, isTemplate: false)
     }
     priceLabel.text = model.price
-    addressLabel.text = model.address
+    addressLabel.text = model.productName
     bedroomImageView.image = model.logo
-    bedroomLabel.text = model.numberOfBedroom
+    bedroomLabel.text = model.promotion
     bathroomImageView.image = AssetHelper.bathroomImage
     bathroomLabel.text = model.numberOfBathroom
     sizeImageView.image = AssetHelper.sizeImage
     sizeLabel.text = model.size
     distanceImageView.image = AssetHelper.distanceImage
-    distanceLabel.text = model.distance
+    distanceLabel.text = model.unitCount
   }
 }
 
@@ -263,10 +263,10 @@ private extension ProductTableViewCell {
 struct ProductTableViewCellModel {
   let imageUrl: URL?
   let price: String?
-  let address: String?
-  let numberOfBedroom: String
+  let productName: String?
+  let promotion: String
   let numberOfBathroom: String
   let size: String
-  let distance: String
+  let unitCount: String
   let logo: UIImage?
 }

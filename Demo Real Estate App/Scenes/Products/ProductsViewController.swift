@@ -7,9 +7,8 @@
 
 import UIKit
 import MapKit
-import SwiftSoup
 
-protocol ProductsViewModelDelegate: UIViewController {
+protocol ProductsViewModelDelegate: AnyObject {
   func didGetProducts(dataSource: [ProductTableViewCellModel])
   func didFailForGettingProducts()
 }
@@ -30,7 +29,7 @@ var startTime = CFAbsoluteTimeGetCurrent()
 var endTime = CFAbsoluteTimeGetCurrent()
 
 final class ProductsViewController: BaseViewController, ViewControllerProtocol {
-  
+
   typealias ViewModelType = ProductsViewModel
   typealias ViewType = ProductsView
 
@@ -41,7 +40,7 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
 
   private var items: [String] = []
 
-  var searchText: String = "Magnum" {
+  var searchText: String = "Robijn wasmiddel" {
     didSet {
       self.performAction()
     }
@@ -131,6 +130,7 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
       case .jumbo:
         decoder.decodeJumbo(html: html)
       case .kruidvat:
+//        decoder.decodeKruidvat(html: html)
         print("Jumbo")
       case .etos:
         print("Jumbo")
@@ -146,217 +146,6 @@ final class ProductsViewController: BaseViewController, ViewControllerProtocol {
   }
 
   //MARK: - AH -
-  func fetchKruidvatProductPrices() async {
-    endTime = CFAbsoluteTimeGetCurrent()
-    print("- - - TookKruidvatStart\(endTime - startTime)")
-    let replacedString = searchText.replacingOccurrences(of:" ", with: "+")
-    //    let urlString = "https://www.jumbo.com/producten/?searchType=keyword&searchTerms=\(replacedString)"
-
-    let urlString = "https://www.etos.nl/search/?q=robijn%20color"
-    guard let url = URL(string: urlString) else { return }
-
-    let task = URLSession.shared.dataTask(with: url) { data, response, error in
-      guard let data1 = data, error == nil else { return }
-      endTime = CFAbsoluteTimeGetCurrent()
-      print("- - - TookKruidvatEnd \(endTime - startTime)")
-      do {
-        let html = String(data: data1, encoding: .utf8)!
-
-        let document = try SwiftSoup.parse(html)
-        let productListCols = try document.select(".product__list-col")
-
-
-
-        for productListCol in productListCols {
-          let impressionTrackers = try productListCol.select("e2-impression-tracker")
-
-          for tracker in impressionTrackers {
-            let className = try tracker.attr("class")
-            let viewHandler = try tracker.attr("view-handler")
-            let dataType = try tracker.attr("data-type")
-            let dataCurrency = try tracker.attr("data-currency")
-            let dataItemName = try tracker.attr("data-item-name")
-            let dataCode = try tracker.attr("data-code")
-            let dataPrice = try tracker.attr("data-price")
-
-            //                  print("Class: \(className)")
-            //                  print("View Handler: \(viewHandler)")
-            //                  print("Data Type: \(dataType)")
-            //                  print("Data Currency: \(dataCurrency)")
-            //                  print("Data Item Name: \(dataItemName)")
-            //                  print("Data Code: \(dataCode)")
-            //                  print("Data Price: \(dataPrice)")
-            //                  print("---------------------")
-          }
-        }
-
-        endTime = CFAbsoluteTimeGetCurrent()
-        print("- - - TooKruidvatEndResult\(endTime - startTime)")
-//        self.counter += 1
-      } catch Exception.Error(let type, let message) {
-        print("Message: \(message)")
-      } catch {
-        print("error")
-      }
-    }
-    task.resume()
-  }
-
-  //MARK: - AH -
-//  func fetchAHProductPrices() async {
-//    let replacedString = searchText.replacingOccurrences(of:" ", with: "%20")
-//    let urlString = "https://www.ah.nl/zoeken?query=\(replacedString)"
-//
-//    endTime = CFAbsoluteTimeGetCurrent()
-//    print("- - - TookAHStart\(endTime - startTime)")
-//
-//    guard let url = URL(string: urlString) else { return }
-//
-//    let task = URLSession.shared.dataTask(with: url) { data, response, error in
-//
-//      endTime = CFAbsoluteTimeGetCurrent()
-//      print("- - - TookAHEnd\(endTime - startTime)")
-//      guard let data1 = data, error == nil else { return }
-//      do {
-//        let html1 = String(data: data1, encoding: .utf8)!
-//
-//        let document = try SwiftSoup.parse(html1)
-//        // Select the script tag containing the window.__INITIAL_STATE__
-//        let scriptTags = try document.select("script")
-//
-//        // Iterate over script tags to find the one containing __INITIAL_STATE__
-//        for script in scriptTags {
-//          let scriptContent = try script.html()
-//
-//          // Check if the script contains the __INITIAL_STATE__ variable
-//          if scriptContent.contains("window.__INITIAL_STATE") {
-//
-//            let pattern = #"window\.__INITIAL_STATE__\s*=\s*(\{.*?\})\s*window\.__APOLLO_STATE__"#
-//            if let regex = try? NSRegularExpression(pattern: pattern, options: []),
-//               let match = regex.firstMatch(in: scriptContent, options: [], range: NSRange(location: 0, length: scriptContent.utf16.count)) {
-//              if let range = Range(match.range(at: 1), in: scriptContent) {
-//                let jsonString = String(scriptContent[range])
-//                let converted = self.convertUndefinedToNull(in: jsonString)
-//                guard let decodedString = self.replaceUnicodeCharacters(in: converted) else {
-//                  break
-//                }
-//                self.parseJson(jsonString: decodedString)
-//                break
-//              }
-//            }
-//          }
-//        }
-//      } catch {
-//        print("Error: \(error)")
-//      }
-//    }
-//    task.resume()
-//  }
-
-  //MARK: - Jumbo -
-//  func fetchJumboProductPrices() async {
-//
-//    endTime = CFAbsoluteTimeGetCurrent()
-//    print("- - - TookJumboStart\(endTime - startTime)")
-//
-//    let replacedString = searchText.replacingOccurrences(of:" ", with: "+")
-//    let urlString = "https://www.jumbo.com/producten/?searchType=keyword&searchTerms=\(replacedString)"
-//
-//    guard let url = URL(string: urlString) else { return }
-//
-//    let task = URLSession.shared.dataTask(with: url) { data, response, error in
-//      endTime = CFAbsoluteTimeGetCurrent()
-//      print("- - - TookJumboEnd\(endTime - startTime)")
-//      guard let data1 = data, error == nil else { return }
-//      do {
-//        let html = String(data: data1, encoding: .utf8)!
-//        let document = try SwiftSoup.parse(html)
-//        let productList = try document.select("div.jum-card")
-//
-//        //        var index = 0
-//        for product in productList.array() {
-//
-//          //          if index >= 10 {
-//          //            break
-//          //          }
-//
-//          var productTitle = ""
-//          if let titleElement = try product.select("a.title-link").first(),
-//             let title = try? titleElement.text(),
-//             let link = try? titleElement.attr("href") {
-//            productTitle = title
-//          }
-//
-//          // Extract price-per-unit
-//          if let pricePerUnitElement = try product.select("div.price-per-unit").first(),
-//             let pricePerUnit = try? pricePerUnitElement.text() {
-//          }
-//
-//          var pricePerUnitF = ""
-//          if let pricePerUnitElement = try product.select("div.price-per-unit").first(),
-//             let pricePerUnit = try? pricePerUnitElement.text() {
-//            pricePerUnitF = pricePerUnit
-//
-//          }
-//
-//          // Extract whole and fractional values
-//          var price = "N/A"
-//          if let wholeElement = try product.select("span.whole").first(),
-//             let fractionalElement = try product.select("sup.fractional").first(),
-//             let whole = try? wholeElement.text(),
-//             let fractional = try? fractionalElement.text() {
-//            price = "\(whole).\(fractional)"
-//          }
-//
-//          var tag = ""
-//          // Extract tag-line elements
-//          let tagLineElements = try product.select("span.tag-line")
-//          for tagLineElement in tagLineElements {
-//            if let tagLine = try? tagLineElement.text() {
-//              tag += " \(tagLine)"
-//            }
-//          }
-//
-//          var imageUrl = ""
-//          if let productImageElement = try product.select("div.product-image img").first(),
-//             let productImageSrc = try? productImageElement.attr("src") {
-//            imageUrl = productImageSrc
-//          }
-//
-//          let productImageUrl = URL(string: imageUrl)
-//          let priceFormatted = "€\(price)"
-//          let address = productTitle
-//          let numberOfBedroom = tag
-//          let numberOfBathroom = "" // Replace with actual property if available in product
-//          let size = "" // Replace with actual property if available in product
-//          let distance = pricePerUnitF
-//          let cellModel = ProductTableViewCellModel(
-//            imageUrl: productImageUrl,
-//            price: priceFormatted,
-//            address: address,
-//            numberOfBedroom: numberOfBedroom,
-//            numberOfBathroom: numberOfBathroom,
-//            size: size,
-//            distance: distance,
-//            logo: StoreImageHelper.logoJumbo
-//          )
-//
-//          gDataSource.append(cellModel)
-//          //          index += 1
-//        }
-//
-//        endTime = CFAbsoluteTimeGetCurrent()
-//        print("- - - TooJumboEndResult\(endTime - startTime)")
-//        self.counter += 1
-//      } catch Exception.Error(let type, let message) {
-//        print("Message: \(message)")
-//      } catch {
-//        print("error")
-//      }
-//    }
-//    task.resume()
-//  }
-
 
 }
 
