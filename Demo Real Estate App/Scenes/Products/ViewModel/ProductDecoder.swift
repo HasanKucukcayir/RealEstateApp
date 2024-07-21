@@ -256,7 +256,8 @@ class ProductDecoder {
         let imageUrl = product.images?.first?.url.flatMap { URL(string: $0) }
         let price = product.price?.now.flatMap { String(format: "€%.2f", $0) }
         let name = product.title
-        let promotion = product.shield?.text ?? ""
+        let smartLabel = product.smartLabel?.text ?? ""
+        let promotion = (product.shield?.text ?? "") + " " + smartLabel
         let numberOfBathroom = "" // Replace with actual property if available in product
         let size = "" // Replace with actual property if available in product
         let unit = product.price?.unitSize ?? ""

@@ -386,7 +386,8 @@ struct ProductElement: Codable {
     let itemCatalogID: Int?
     let theme: String?
     let price: ProductPrice?
-    let orderable: Bool?
+  let orderable: Bool?
+  let smartLabel: Shield?
     let contributionMargin: Int?
 
     enum CodingKeys: String, CodingKey {
@@ -394,7 +395,7 @@ struct ProductElement: Codable {
         case hqID = "hqId"
         case descriptionFull
         case taxonomyID = "taxonomyId"
-        case taxonomies, id, control, properties, shield
+        case taxonomies, id, control, properties, shield, smartLabel
         case itemCatalogID = "itemCatalogId"
         case theme, price, orderable, contributionMargin
     }

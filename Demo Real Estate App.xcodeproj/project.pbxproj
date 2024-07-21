@@ -277,6 +277,7 @@
 		9F77A33827082F8C00384E1D /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				9FB29ED32C36010300A6E015 /* Stores */,
 				9FCD23C9270A4EE30018B99C /* Products */,
 				9F3AC5C62712F9D100AB0B33 /* ProductDetail */,
 				9F3AC5C72712F9E200AB0B33 /* InfoScene */,
@@ -330,6 +331,13 @@
 				9F8E1966271AE38C00E02F9E /* EmptyResultView.swift */,
 			);
 			path = EmptyResultView;
+			sourceTree = "<group>";
+		};
+		9FB29ED32C36010300A6E015 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Stores;
 			sourceTree = "<group>";
 		};
 		9FCD23B92708D88B0018B99C /* API */ = {
